@@ -1,0 +1,2 @@
+class LessonPayment < ApplicationRecord
+end
