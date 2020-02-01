@@ -1,4 +1,4 @@
-class LessonPaymentsController < ApplicationController
+class LessonPaymentsController < ApiController
   before_action :set_lesson_payment, only: [:show, :update, :destroy]
 
   # GET /lesson_payments

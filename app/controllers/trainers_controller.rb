@@ -1,4 +1,4 @@
-class TrainersController < ApplicationController
+class TrainersController < ApiController
   before_action :set_trainer, only: [:show, :update, :destroy]
 
   # GET /trainers

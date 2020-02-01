@@ -1,4 +1,4 @@
-class SchedulesController < ApplicationController
+class SchedulesController < ApiController
   before_action :set_schedule, only: [:show, :update, :destroy]
 
   # GET /schedules
