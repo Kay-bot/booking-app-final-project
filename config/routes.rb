@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :lesson_payments
   resources :bookings
-  resources :schedules
+  # resources :schedules
   resources :clients
   resources :trainers
   resources :lessons

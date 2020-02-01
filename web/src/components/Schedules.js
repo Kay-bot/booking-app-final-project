@@ -26,11 +26,12 @@ class Schedules extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   fetch("/api/schedules")
-  //     .then((response) => response.json())
-  //     .then((json) => this.setState({ values: json }));
-  // }
+  componentDidMount() {
+    console.log("Mounting schedules");
+    // fetch("/api/schedules")
+    //   .then((response) => response.json())
+    //   .then((json) => this.setState({ values: json }));
+  }
 
   // renderSchedule = () => {
   //   Object.keys(this.state.values).map((obj, i) => {

@@ -26,7 +26,7 @@ class Routes extends Component {
           <App path="/" />
           <About path="/about" />
           <Schedules path="/schedules" />
-          <LessonForm path="add-lessons" />
+          <LessonForm path="/add-lessons" />
         </Router>
         <GlobalStyle />
       </>

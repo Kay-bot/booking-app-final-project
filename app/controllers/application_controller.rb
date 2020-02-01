@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def fallback_index_html
+        render :file => 'public/index.html'
+    end
+
     protected 
 
     def jwt_encode(payload, exp = 24.hours.from_now)
@@ -33,8 +37,4 @@ class ApplicationController < ActionController::Base
         HashWithIndifferentAccess.new decoded
     end
     
-
-    def fallback_index_html
-        render :file => 'public/index.html'
-    end
 end
