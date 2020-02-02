@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-
 import "../styles/form.css";
-import { Container } from "../styles/Container";
-
+import StyledHero from "../styles/StyledHero";
 import TextareaAutosize from "react-textarea-autosize";
 
 class LessonForm extends Component {
@@ -29,7 +27,7 @@ class LessonForm extends Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
-    const res = await fetch(`http://localhost:3001/api/lessons`, {
+    const res = await fetch(`http://localhost:3001/lessons`, {
       method: "POST",
       body: JSON.stringify(this.state.values),
       headers: {
@@ -68,7 +66,7 @@ class LessonForm extends Component {
     });
   render() {
     return (
-      <Container>
+      <StyledHero>
         <div className="form-container">
           <h1>Add New Lession</h1>
           <form onSubmit={this.submitForm}>
@@ -192,7 +190,7 @@ class LessonForm extends Component {
             {this.state.isSubmitting ? "Submitting..." : this.state.message}
           </div>
         </div>
-      </Container>
+      </StyledHero>
     );
   }
 }

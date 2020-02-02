@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   resources :clients
   resources :trainers
   resources :lessons
-  resources :users
+  # resources :users
   resources :accounts
 
   get 'api/lessons', to: 'lessons#index'
-  post 'api/lessons', to: 'lessons#create'
+  post 'lessons', to: 'lessons#create'
 
   get 'api/users', to: 'users#index'
   post 'api/users', to: 'users#create'

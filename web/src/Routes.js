@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { Router } from "@reach/router";
-import App from "./components/App";
+import "./styles/App.css";
+
+import Home from "./pages/Home";
 import LessonForm from "./forms/LessonForm";
-import Navbar from "./navbar/Navbar";
-import GlobalStyle from "./styles/Global";
 import Schedules from "./components/Schedules";
 
-const About = () => <h1>Coming soon!</h1>;
+import Navbar from "./navbar/Navbar";
+
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 class Routes extends Component {
   state = {
@@ -18,17 +19,17 @@ class Routes extends Component {
   render() {
     return (
       <>
-        <Navbar
-          navbarState={this.state.navbarOpen}
-          handleNavbar={this.handleNavbar}
-        />
-        <Router>
-          <App path="/" />
-          <About path="/about" />
-          <Schedules path="/schedules" />
-          <LessonForm path="/add-lessons" />
-        </Router>
-        <GlobalStyle />
+        <BrowserRouter>
+          <Navbar
+            navbarState={this.state.navbarOpen}
+            handleNavbar={this.handleNavbar}
+          />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/schedules" component={Schedules} />
+            <Route exacgt path="/add-lessons" component={LessonForm} />
+          </Switch>
+        </BrowserRouter>
       </>
     );
   }

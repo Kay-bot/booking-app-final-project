@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
 
@@ -25,10 +27,9 @@ const Navbar = (props) => {
         <FlexContainer>
           <Brand />
           <NavLinks style={linkAnimation}>
-            <a href="/">Lessons</a>
-            <a href="/about">About</a>
-            <a href="/schedules">Schedules</a>
-            <a href="/add-lessons">Add Lessons</a>
+            <Link to="/">Home</Link>
+            <Link to="/schedules">Schedules</Link>
+            <Link to="/add-lessons">Add Lessons</Link>
           </NavLinks>
           <Wrapper>
             <Menu
