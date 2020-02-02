@@ -145,6 +145,7 @@ class LessonForm extends Component {
                 onChange={this.handleInputChange}
                 title="Language"
                 required
+                className="select-box"
               >
                 <option value="Thai">Thai</option>
                 <option value="Espanol">Espanol</option>
@@ -162,8 +163,9 @@ class LessonForm extends Component {
                 onChange={this.handleInputChange}
                 title="Level"
                 required
+                className="select-box"
               >
-                <option value="Beginner">Beginer</option>
+                <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advance">Advance</option>
               </select>
@@ -184,7 +186,9 @@ class LessonForm extends Component {
                 required
               />
             </div>
-            <button type="submit">Add Lesson</button>
+            <button className="submit-btn-2" type="submit">
+              Add Lesson
+            </button>
           </form>
           <div className={`message ${this.state.isError && "error"}`}>
             {this.state.isSubmitting ? "Submitting..." : this.state.message}

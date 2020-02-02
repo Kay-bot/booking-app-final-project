@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-// RecipeList styles
 export const LessonContainer = styled.div`
   display: flex;
   justify-content: center;

@@ -93,101 +93,106 @@ class ScheduleForm extends Component {
     };
 
     return (
-      <form className="form-box" onSubmit={this.submitForm}>
-        <div>
-          <label style={label} htmlFor="title">
-            Status
-          </label>
-          <select
-            type="title"
-            name="title"
-            id="title"
-            value={this.state.values.title}
-            onChange={this.handleInputChange}
-            title="title"
-            required
-            style={select}
-          >
-            <option value="Available">Available</option>
-            <option value="Booked">Booked</option>
-          </select>
+      <div>
+        <form className="form-box" onSubmit={this.submitForm}>
+          <div>
+            <label style={label} htmlFor="title">
+              Status
+            </label>
+            <select
+              type="title"
+              name="title"
+              id="title"
+              value={this.state.values.title}
+              onChange={this.handleInputChange}
+              title="title"
+              required
+              style={select}
+            >
+              <option value="Available">Available</option>
+              <option value="Booked">Booked</option>
+            </select>
+          </div>
+          <div>
+            <label style={label} htmlFor="start">
+              Start:
+            </label>
+            <input
+              type="datetime-local"
+              name="start"
+              id="start"
+              value={this.state.values.start}
+              onChange={this.handleInputChange}
+              required
+              style={inputBox}
+            />
+          </div>
+          <div>
+            <label style={label} htmlFor="end">
+              End:
+            </label>
+            <input
+              type="datetime-local"
+              name="end"
+              id="end"
+              value={this.state.values.end}
+              onChange={this.handleInputChange}
+              required
+              style={inputBox}
+            />
+          </div>
+          <div>
+            <label style={label} htmlFor="trainer_id">
+              Trainer ID
+            </label>
+            <select
+              type="trainer_id"
+              name="trainer_id"
+              id="trainer_id"
+              value={this.state.values.trainer_id}
+              onChange={this.handleInputChange}
+              title="trainer_id"
+              required
+              style={select}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+          </div>
+          <div>
+            <label style={label} htmlFor="account_id">
+              Account Type
+            </label>
+            <select
+              type="account_id"
+              name="account_id"
+              id="account_id"
+              value={this.state.values.account_id}
+              onChange={this.handleInputChange}
+              title="account_id"
+              required
+              style={select}
+            >
+              <option value="1" selected="selected">
+                Trainer
+              </option>
+            </select>
+          </div>
+          <button style={button} type="submit">
+            Add Schedule
+          </button>
+        </form>
+        <div className={`message ${this.state.isError && "error"}`}>
+          {this.state.isSubmitting ? "Submitting..." : this.state.message}
         </div>
-        <div>
-          <label style={label} htmlFor="start">
-            Start:
-          </label>
-          <input
-            type="datetime-local"
-            name="start"
-            id="start"
-            value={this.state.values.start}
-            onChange={this.handleInputChange}
-            required
-            style={inputBox}
-          />
-        </div>
-        <div>
-          <label style={label} htmlFor="end">
-            End:
-          </label>
-          <input
-            type="datetime-local"
-            name="end"
-            id="end"
-            value={this.state.values.end}
-            onChange={this.handleInputChange}
-            required
-            style={inputBox}
-          />
-        </div>
-        <div>
-          <label style={label} htmlFor="trainer_id">
-            Trainer ID
-          </label>
-          <select
-            type="trainer_id"
-            name="trainer_id"
-            id="trainer_id"
-            value={this.state.values.trainer_id}
-            onChange={this.handleInputChange}
-            title="trainer_id"
-            required
-            style={select}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-        </div>
-        <div>
-          <label style={label} htmlFor="account_id">
-            Account Type
-          </label>
-          <select
-            type="account_id"
-            name="account_id"
-            id="account_id"
-            value={this.state.values.account_id}
-            onChange={this.handleInputChange}
-            title="account_id"
-            required
-            style={select}
-          >
-            <option value="1" selected="selected">
-              Trainer
-            </option>
-          </select>
-        </div>
-        <button style={button} type="submit">
-          Add Schedule
-        </button>
-      </form>
+      </div>
     );
   }
 }

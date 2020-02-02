@@ -4,6 +4,8 @@ import "./styles/App.css";
 import Home from "./pages/Home";
 import LessonForm from "./forms/LessonForm";
 import Schedules from "./components/Schedules";
+import LoginForm from "./forms/LoginForm";
+import RegisterForm from "./forms/RegisterForm";
 
 import Navbar from "./navbar/Navbar";
 
@@ -27,7 +29,9 @@ class Routes extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/schedules" component={Schedules} />
-            <Route exacgt path="/add-lessons" component={LessonForm} />
+            <Route exact path="/add-lessons" component={LessonForm} />
+            <Route exact path="/login" component={LoginForm} />
+            <Route exact path="/register" component={RegisterForm} />
           </Switch>
         </BrowserRouter>
       </>

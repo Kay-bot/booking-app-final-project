@@ -30,6 +30,7 @@ const Navbar = (props) => {
             <Link to="/">Home</Link>
             <Link to="/schedules">Schedules</Link>
             <Link to="/add-lessons">Add Lessons</Link>
+            <Link to="/login">Login</Link>
           </NavLinks>
           <Wrapper>
             <Menu

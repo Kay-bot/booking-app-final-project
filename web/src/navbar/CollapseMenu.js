@@ -31,6 +31,9 @@ const CollapseMenu = (props) => {
           <li>
             <Link to="/add-lessons">Add Lessons</Link>
           </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
         </NavLinks>
       </CollapseWrapper>
     );
