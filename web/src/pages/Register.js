@@ -3,6 +3,7 @@ import RegisterForm from "../forms/RegisterForm";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { Error } from "../forms/AuthForm";
+import { Container } from "../styles/Container";
 
 const Register = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -33,7 +34,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <Container>
       <RegisterForm onSignup={(data) => handleSignup(data)}></RegisterForm>
 
       {isError && (
@@ -41,7 +42,7 @@ const Register = () => {
           "Error register failed. Please check network or contact admin"
         </Error>
       )}
-    </>
+    </Container>
   );
 };
 

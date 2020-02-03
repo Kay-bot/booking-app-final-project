@@ -32,7 +32,10 @@ const CollapseMenu = (props) => {
             <Link to="/add-lessons">Add Lessons</Link>
           </li>
           <li>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Sign In</Link>
+          </li>
+          <li>
+            <Link to="/Register">Register</Link>
           </li>
         </NavLinks>
       </CollapseWrapper>

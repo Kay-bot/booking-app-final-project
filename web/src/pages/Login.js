@@ -4,6 +4,7 @@ import LoginForm from "../forms/LoginForm";
 import axios from "axios";
 import { useAuth } from "../context/auth";
 import { Error } from "../forms/AuthForm";
+import { Container } from "../styles/Container";
 
 function Login(props) {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -33,9 +34,11 @@ function Login(props) {
     return <Redirect to="/" />;
   }
   return (
-    <LoginForm onLogin={(data) => postLogin(data)}>
-      <p>{isError && <Error>Incorrect username or password!</Error>}</p>
-    </LoginForm>
+    <Container>
+      <LoginForm onLogin={(data) => postLogin(data)}>
+        <p>{isError && <Error>Incorrect username or password!</Error>}</p>
+      </LoginForm>
+    </Container>
   );
 }
 

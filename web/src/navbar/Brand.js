@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import logo from "../assets/web-logo.jpeg";
+import logo from "../assets/meowLogo.jpg";
 
 const Brand = () => {
   return <Image src={logo} alt="Company Logo" />;
