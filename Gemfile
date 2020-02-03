@@ -46,3 +46,7 @@ gem "jwt", "~> 2.2"
 gem 'bcrypt', '~> 3.1.7'
 
 gem "awesome_print"
+
+gem "aws-sdk-s3", require: false
+
+gem 'image_processing'

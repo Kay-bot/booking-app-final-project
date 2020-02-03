@@ -38,6 +38,6 @@ class LessonsController < ApiController
   end
 
   def lesson_params
-    params.require(:lesson).permit(:image, :title, :duration, :cost, :category, :language, :level, :description)
+    params.require(:lesson).permit(:title, :duration, :cost, :category, :language, :level, :description, images:[])
   end
 end

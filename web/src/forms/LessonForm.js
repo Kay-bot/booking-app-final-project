@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import "../styles/form.css";
 import StyledHero from "../styles/StyledHero";
 import TextareaAutosize from "react-textarea-autosize";
+import ImageUploader from "react-images-upload";
 
 class LessonForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       values: {
-        image: "",
+        image: [],
         title: "",
         duration: [],
         cost: [],
@@ -17,12 +18,14 @@ class LessonForm extends Component {
         level: ["Beginner", "Intermediate", "Advance"],
         description: ""
       },
+
       isSubmitting: false,
       isError: false
     };
   }
 
   submitForm = async (e) => {
+    alert("A class was submitted: " + this.state.values);
     e.preventDefault();
     console.log(this.state);
     this.setState({ isSubmitting: true });
@@ -46,7 +49,7 @@ class LessonForm extends Component {
           isError: false,
           message: "",
           values: {
-            image: "",
+            image: [],
             title: "",
             duration: [],
             cost: [],
@@ -60,10 +63,16 @@ class LessonForm extends Component {
     );
   };
 
+  onDrop = (img) =>
+    this.setState({
+      image: this.state.values.image.concat(img)
+    });
+
   handleInputChange = (e) =>
     this.setState({
       values: { ...this.state.values, [e.target.name]: e.target.value }
     });
+
   render() {
     return (
       <StyledHero>
@@ -72,14 +81,15 @@ class LessonForm extends Component {
           <form onSubmit={this.submitForm}>
             <div className="input-group">
               <label htmlFor="image">Image</label>
-              <input
-                className="input-box"
-                placeholder="image url"
-                type="url"
+              <ImageUploader
+                withIcon={true}
+                buttonText="Choose images"
                 name="image"
                 id="image"
                 value={this.state.values.image}
-                onChange={this.handleInputChange}
+                onChange={this.onDrop}
+                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
+                maxFileSize={5242880}
                 title="Image"
                 required
               />
@@ -145,12 +155,15 @@ class LessonForm extends Component {
                 onChange={this.handleInputChange}
                 title="Language"
                 required
+                multiple={false}
                 className="select-box"
               >
                 <option value="Thai">Thai</option>
                 <option value="Espanol">Espanol</option>
                 <option value="Greek">Greek</option>
-                <option value="English">English</option>
+                <option selected value="English">
+                  English
+                </option>
               </select>
             </div>
             <div className="input-group">
@@ -163,9 +176,12 @@ class LessonForm extends Component {
                 onChange={this.handleInputChange}
                 title="Level"
                 required
+                multiple={false}
                 className="select-box"
               >
-                <option value="Beginner">Beginner</option>
+                <option selected value="Beginner">
+                  Beginner
+                </option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advance">Advance</option>
               </select>
