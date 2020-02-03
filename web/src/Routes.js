@@ -1,40 +1,41 @@
 import React, { Component } from "react";
 import "./styles/App.css";
 
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import PrivateRoute from "./pages/PrivateRoute";
+
 import Home from "./pages/Home";
-import LessonForm from "./forms/LessonForm";
-import Schedules from "./components/Schedules";
-import LoginForm from "./forms/LoginForm";
-import RegisterForm from "./forms/RegisterForm";
+import Admin from "./pages/Admin";
 
-import Navbar from "./navbar/Navbar";
-
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { AuthContext } from "./context/auth";
 
 class Routes extends Component {
-  state = {
-    navbarOpen: false
-  };
-  handleNavbar = () => {
-    this.setState({ navbarOpen: !this.state.navbarOpen });
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // navbarOpen: false,
+    };
+  }
+  // handleNavbar = () => {
+  //   this.setState({ navbarOpen: !this.state.navbarOpen });
+  // };
+
   render() {
     return (
-      <>
+      <AuthContext.Provider value={false}>
         <BrowserRouter>
-          <Navbar
+          {/* <Navbar
+            user={userDetails}
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar}
-          />
+          /> */}
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/schedules" component={Schedules} />
-            <Route exact path="/add-lessons" component={LessonForm} />
-            <Route exact path="/login" component={LoginForm} />
-            <Route exact path="/register" component={RegisterForm} />
+            <PrivateRoute path="/admin" component={Admin} />
           </Switch>
         </BrowserRouter>
-      </>
+      </AuthContext.Provider>
     );
   }
 }

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-    ensure_security_headers
-    protect_from_forgery with: :exception
+    # ensure_security_headers
+    # protect_from_forgery with: :exception
     skip_before_action :verify_authenticity_token
   
     @@JWT_SECRET_KEY = 'it is bad to keep your secret key here'

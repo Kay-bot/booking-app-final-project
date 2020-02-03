@@ -1,24 +1,23 @@
 class UsersController < ApiController
-  before_action :authorize_request, except: %i[create index]
-  before_action :set_user, only: [:show, :update, :destroy]
+  require 'jwt'
+  # before_action :authorize_request, except: %i[create index]
+  # before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
   def index
     render json: User.all.as_json, status: 200
-   end 
+  end 
 
-   def create
+  def create
     userParams = params.require(:user)
-    .permit(:first_name, :last_name, :email, :password, :account_id, :is_admin, :is_trainer)
-    
+      .permit(:name, :email, :password, :password_confirmation)
     user = User.new(userParams)
-    
-      if user.save()
-        render json: user, status: :created
-      else
-        render json: { errors: user.errors.full_messages },
-              status: :unprocessable_entity
-      end
+    if user.save()
+      render json: user, status: :created
+    else
+      render json: { errors: !user.errors.full_messages },
+             status: :unprocessable_entity
+    end
   end
 
   def get_user_id
@@ -90,4 +89,5 @@ class UsersController < ApiController
            status: :ok
   end
 
+  
 end

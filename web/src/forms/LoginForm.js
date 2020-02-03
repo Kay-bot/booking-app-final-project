@@ -1,98 +1,64 @@
 import React, { Component } from "react";
 import "../styles/form.css";
-import { Container } from "../styles/Container";
+import StyledHero from "../styles/StyledHero";
 import { Link } from "react-router-dom";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      users: {
-        email: "",
-        password: ""
-      },
-      isSubmitting: false,
-      isError: false
+      email: "",
+      password: ""
     };
   }
 
-  submitForm = async (e) => {
-    e.preventDefault();
-    console.log(this.state.users);
-    this.setState({ isSubmitting: true });
-
-    const res = await fetch(`api/users/login`, {
-      method: "POST",
-      body: JSON.stringify(this.state.users),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-    this.setState({ isSubmitting: false });
-    const data = await res.json();
-    !data.hasOwnProperty("error")
-      ? this.setState({ message: data.success })
-      : this.setState({ message: data.error, isError: true });
-
-    setTimeout(
-      () =>
-        this.setState({
-          isError: false,
-          message: "",
-          users: {
-            email: "",
-            password: ""
-          }
-        }),
-      1600
-    );
+  handleEmailChange = (e) => {
+    this.setState({ email: e.target.value });
   };
 
-  handleInputChange = (e) =>
-    this.setState({
-      values: { ...this.state.users, [e.target.name]: e.target.value }
-    });
+  handlePasswordChange = (e) => {
+    this.setState({ password: e.target.value });
+  };
+
   render() {
     return (
-      <Container>
+      <StyledHero>
         <div className="form-container">
           <h1>Login</h1>
-          <div className={`message ${this.state.isError && "error"}`}>
-            {this.state.isSubmitting ? "Loging in..." : this.state.message}
+          <p>{this.props.errMessage}</p>
+
+          <div className="input-group">
+            <label htmlFor="email">Email</label>
+            <input
+              placeholder="Enter email"
+              className="input-box-2"
+              type="text"
+              name="email"
+              required
+              value={this.state.email}
+              onChange={this.handleEmailChange}
+            />
           </div>
-          <form onSubmit={this.submitForm}>
-            <div className="input-group">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={this.state.users.email}
-                onChange={this.handleInputChange}
-                title="Email"
-                required
-                placeholder="Enter email"
-                className="input-box-2"
-              />
-            </div>
-            <div className="input-group">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={this.state.users.password}
-                onChange={this.handleInputChange}
-                title="Password"
-                required
-                placeholder="Enter password"
-                className="input-box-2"
-              />
-            </div>
-            <button className="submit-btn-2" type="submit">
-              Login
-            </button>
-          </form>
+          <div className="input-group">
+            <label htmlFor="password">Password</label>
+            <input
+              placeholder="Enter password"
+              className="input-box-2"
+              type="password"
+              name="psw"
+              required
+              value={this.state.password}
+              onChange={this.handlePasswordChange}
+            />
+          </div>
+          <button
+            className="submit-btn-2"
+            type="submit"
+            onClick={() => this.onLoginClick()}
+          >
+            Login
+          </button>
+
           <p>
             Don't have account? &nbsp;
             <b>
@@ -100,7 +66,7 @@ class LoginForm extends Component {
             </b>
           </p>
         </div>
-      </Container>
+      </StyledHero>
     );
   }
 }

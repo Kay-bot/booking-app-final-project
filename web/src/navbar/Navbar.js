@@ -21,6 +21,8 @@ const Navbar = (props) => {
     config: config.wobbly
   });
 
+  const user = props.user;
+
   return (
     <>
       <NavBar style={barAnimation}>
@@ -30,7 +32,27 @@ const Navbar = (props) => {
             <Link to="/">Home</Link>
             <Link to="/schedules">Schedules</Link>
             <Link to="/add-lessons">Add Lessons</Link>
-            <Link to="/login">Login</Link>
+
+            {!user.isLoggedIn ? (
+              <div>
+                <Link to="/login">Login</Link>
+              </div>
+            ) : null}
+
+            {user.isLoggedIn && user.currentUser ? (
+              <div>
+                <li style={{ float: "right" }}>
+                  <a href="" onClick={(e) => this.state.handleLogoutClick(e)}>
+                    Logout
+                  </a>
+                </li>
+                <li style={{ float: "right" }}>
+                  <Link to={`/user/${user.currentUserId}`}>
+                    Welcome back, {props.user.currentUser}!
+                  </Link>
+                </li>
+              </div>
+            ) : null}
           </NavLinks>
           <Wrapper>
             <Menu

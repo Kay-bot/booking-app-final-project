@@ -18,26 +18,26 @@ client = Account.create(
     account_type: "Client"
     );
 
-kay = User.create(
-    email:'kay@ga.com.au', 
-    password_digest:'123456', 
-    is_admin: true,
-    account_id: 1
-    );
+# kay = User.create(
+#     email:'kay@ga.com.au', 
+#     password_digest:'123456', 
+#     is_admin: true,
+#     account_id: 1
+#     );
 
-otis = User.create(
-    email:'otis@ga.com.au', 
-    password_digest:'123456', 
-    is_admin: false,
-    account_id: 1
-    );
+# otis = User.create(
+#     email:'otis@ga.com.au', 
+#     password_digest:'123456', 
+#     is_admin: false,
+#     account_id: 1
+#     );
 
-maeve = User.create(
-    email:'maeve@ga.com.au', 
-    password_digest:'123456', 
-    is_admin: false,
-    account_id: 1
-    );
+# maeve = User.create(
+#     email:'maeve@ga.com.au', 
+#     password_digest:'123456', 
+#     is_admin: false,
+#     account_id: 1
+#     );
 
 Lesson.create(
     image: 'https://imgur.com/rYq0OJN', 
