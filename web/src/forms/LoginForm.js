@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "../styles/form.css";
-import StyledHero from "../styles/StyledHero";
 import { Link } from "react-router-dom";
+import moewLogo from "../assets/meowLogo.jpg";
+import { Card, Logo, Form, Input, Button } from "../forms/AuthForm";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -10,6 +11,11 @@ class LoginForm extends Component {
       email: "",
       password: ""
     };
+  }
+
+  onLoginClick() {
+    // TODO: validate inputs
+    this.props.onLogin(this.state);
   }
 
   handleEmailChange = (e) => {
@@ -22,51 +28,29 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <StyledHero>
-        <div className="form-container">
-          <h1>Login</h1>
-          <p>{this.props.errMessage}</p>
-
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              placeholder="Enter email"
-              className="input-box-2"
-              type="text"
-              name="email"
-              required
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              placeholder="Enter password"
-              className="input-box-2"
-              type="password"
-              name="psw"
-              required
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <button
-            className="submit-btn-2"
-            type="submit"
-            onClick={() => this.onLoginClick()}
-          >
-            Login
-          </button>
-
-          <p>
-            Don't have account? &nbsp;
-            <b>
-              <Link to="/register">Register now</Link>
-            </b>
-          </p>
-        </div>
-      </StyledHero>
+      <Card>
+        <Logo src={moewLogo} />
+        <Form>
+          <Input
+            type="text"
+            name="email"
+            required
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+            placeholder="email"
+          />
+          <Input
+            type="password"
+            name="psw"
+            required
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+            placeholder="password"
+          />
+          <Button onClick={() => this.onLoginClick()}>Sign In</Button>
+        </Form>
+        <Link to="/register">Don't have an account?</Link>
+      </Card>
     );
   }
 }

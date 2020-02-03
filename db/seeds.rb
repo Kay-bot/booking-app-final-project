@@ -8,7 +8,7 @@
 Account.destroy_all 
 User.destroy_all 
 Lesson.destroy_all
-include BCrypt
+
 
 trainer = Account.create(
     account_type: "Trainer"

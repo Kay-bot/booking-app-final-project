@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "../styles/form.css";
-import StyledHero from "../styles/StyledHero";
 import { Link } from "react-router-dom";
+import moewLogo from "../assets/meowLogo.jpg";
+import { Card, Logo, Form, Input, Button } from "../forms/AuthForm";
 
 class RegisterForm extends Component {
   constructor(props) {
@@ -9,9 +10,7 @@ class RegisterForm extends Component {
     this.state = {
       email: "",
       password: "",
-      password_confirmation: "",
-      isSubmitting: false,
-      isError: false
+      password_confirmation: ""
     };
   }
   onSignupClick() {
@@ -33,57 +32,37 @@ class RegisterForm extends Component {
 
   render() {
     return (
-      <StyledHero>
-        <div className="form-container">
-          <h1>Register new account</h1>
-          <div className="input-group">
-            <label htmlFor="email">Email</label>
-            <input
-              className="input-box-2"
-              placeholder="Enter valid email"
-              type="text"
-              name="email"
-              required
-              value={this.state.email}
-              onChange={this.handleEmailChange}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password</label>
-            <input
-              className="input-box-2"
-              placeholder="Enter valid email"
-              type="password"
-              name="psw"
-              required
-              value={this.state.password}
-              onChange={this.handlePasswordChange}
-            />
-          </div>
-          <div className="input-group">
-            <label htmlFor="psw-repeat">Password confirmation</label>
-            <input
-              className="input-box-2"
-              placeholder="Confirm password"
-              type="password"
-              name="psw-repeate"
-              required
-              value={this.state.password_confirmation}
-              onChange={this.handleConfirmPasswordChange}
-            />
-          </div>
-          <button
-            className="submit-btn-2"
-            type="submit"
-            onClick={() => this.onSignupClick()}
-          >
-            Register
-          </button>
-          <br />
-          &nbsp;
-          <Link to="/login">Already have an account?</Link>
-        </div>
-      </StyledHero>
+      <Card>
+        <Logo src={moewLogo} />
+        <Form>
+          <Input
+            type="text"
+            name="email"
+            required
+            value={this.state.email}
+            onChange={this.handleEmailChange}
+            placeholder="email"
+          />
+          <Input
+            type="password"
+            name="psw"
+            required
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+            placeholder="password"
+          />
+          <Input
+            type="password"
+            name="psw-repeat"
+            required
+            value={this.state.password_confirmation}
+            onChange={this.handleConfirmPasswordChange}
+            placeholder="password again"
+          />
+          <Button onClick={() => this.onSignupClick()}>Register</Button>
+        </Form>
+        <Link to="/login">Already have an account?</Link>
+      </Card>
     );
   }
 }
