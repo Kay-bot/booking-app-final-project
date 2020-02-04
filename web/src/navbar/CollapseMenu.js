@@ -26,16 +26,24 @@ const CollapseMenu = (props) => {
           </li>
 
           <li>
-            <Link to="/schedules">Schedules</Link>
+            <Link to="/schedules" onClick={props.handleNavbar}>
+              Schedules
+            </Link>
           </li>
           <li>
-            <Link to="/add-lessons">Add Lessons</Link>
+            <Link to="/add-lessons" onClick={props.handleNavbar}>
+              Add Lessons
+            </Link>
           </li>
           <li>
-            <Link to="/login">Sign In</Link>
+            <Link to="/login" onClick={props.handleNavbar}>
+              Sign In
+            </Link>
           </li>
           <li>
-            <Link to="/Register">Register</Link>
+            <Link to="/Register" onClick={props.handleNavbar}>
+              Register
+            </Link>
           </li>
         </NavLinks>
       </CollapseWrapper>

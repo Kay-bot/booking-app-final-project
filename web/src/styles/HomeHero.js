@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import defaultImg from "../assets/background-header.jpeg";
-const StyledHero = styled.header`
-  min-height: 30vh;
+const HomeHero = styled.header`
+  min-height: 100vh;
   /* background: url(${defaultImg}); */
   background: url(${(props) => (props.img ? props.img : defaultImg)});
   display: flex;
@@ -11,4 +11,4 @@ const StyledHero = styled.header`
   padding: 30px
 `;
 
-export default StyledHero;
+export default HomeHero;

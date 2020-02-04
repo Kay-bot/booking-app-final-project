@@ -20,7 +20,7 @@ const Input = styled.input`
   padding: 1rem;
   border: 1px solid #999;
   margin-bottom: 1rem;
-  font-size: 0.8rem;
+  font-size: 16px;
 `;
 
 const Button = styled.button`
@@ -32,7 +32,7 @@ const Button = styled.button`
   font-weight: 700;
   width: 100%;
   margin-bottom: 1rem;
-  font-size: 0.8rem;
+  font-size: 18px;
 `;
 
 const Logo = styled.img`

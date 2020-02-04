@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import HomeHero from "../styles/HomeHero";
-import { Container } from "../styles/Container";
+import StyledHero from "../styles/StyledHero";
 import {
   LessonContainer,
   LessonCardContainer,
@@ -27,7 +26,7 @@ class Lessons extends Component {
     const lessonList = this.state.lessons.map((item, key) => (
       <LessonCardContainer key={key}>
         <LessonLink to={`/lesson/${this.props.lessonId}`}>
-          {/* <LessonImage>{item.image}</LessonImage> */}
+          {/* <LessonImage>url("{item.image}")</LessonImage> */}
           <LessonDetailsContainer>
             <LessonDetails>{item.title}</LessonDetails>
             <LessonDetails>{item.duration}</LessonDetails>
@@ -52,9 +51,9 @@ class Lessons extends Component {
     };
     return (
       <div style={box}>
-        <HomeHero>
+        <StyledHero>
           <h1>Upcoming Lessons in 2020</h1>
-        </HomeHero>
+        </StyledHero>
         {/* <Container> */}
         <LessonContainer>{lessonList}</LessonContainer>
         <div style={box2}>

@@ -1,5 +1,6 @@
 import React, { Component, useState } from "react";
 import "./styles/App.css";
+import HomeHero from "./styles/HomeHero";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import PrivateRoute from "./pages/PrivateRoute";
@@ -8,24 +9,27 @@ import Lessons from "./pages/Lessons";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import SingleLesson from "./pages/SingleLesson";
+import Error from "./pages/Error";
+
 import Navbar from "./navbar/Navbar";
 
 import Schedules from "./components/Schedules";
 import LessonForm from "./forms/LessonForm";
 import { AuthContext } from "./context/auth";
-// const [authToken, setAuthTokens] = useState();
-
-// const setTokens = (data) => {
-//   localStorage.setItem("token", JSON.stringify(data));
-//   setAuthTokens(data);
-// };
 
 class Routes extends Component {
   constructor(props) {
     super(props);
-
+    let auth = JSON.parse(sessionStorage.getItem("auth"));
     this.state = {
-      navbarOpen: false
+      navbarOpen: false,
+      user: {
+        isLoggedIn: !!auth ? true : false,
+        currentUser: null,
+        currentUserId: null,
+        loginErrorMessage: ""
+      }
     };
   }
   handleNavbar = () => {
@@ -34,19 +38,26 @@ class Routes extends Component {
 
   render() {
     return (
-      <AuthContext.Provider value={false}>
+      <AuthContext.Provider value={{ ...this.state.user }}>
         <BrowserRouter>
           <Navbar
             navbarState={this.state.navbarOpen}
             handleNavbar={this.handleNavbar}
           />
           <Switch>
-            <Route path="/lessons" component={Lessons} />
-            <Route path="/schedules" component={Schedules} />
-            <Route path="/add-lessons" component={LessonForm} />
-            <Route path="/login" component={Login} />
-            <Route path="/Register" component={Register} />
-            <PrivateRoute path="/admin" component={Admin} />
+            <Route exact path="/">
+              <HomeHero>
+                <h2>Welcome to the class room!</h2>
+              </HomeHero>
+            </Route>
+            <Route exact path="/lessons" component={Lessons} />
+            <Route exact path="/lessons/:lesson_id" component={SingleLesson} />
+            <Route exact path="/schedules" component={Schedules} />
+            <Route exact path="/add-lessons" component={LessonForm} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/Register" component={Register} />
+            <Route component={Error} />
+            <PrivateRoute exact path="/admin" component={Admin} />
           </Switch>
         </BrowserRouter>
       </AuthContext.Provider>
