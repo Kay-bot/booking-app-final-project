@@ -8,14 +8,43 @@ import {
   LessonImage,
   LessonDetails
 } from "../styles/LessonHomeStyle";
-import { Link } from "react-router-dom";
+import "../styles/pagination.css";
 import Axios from "axios";
 
 class Lessons extends Component {
   state = {
+    count: 0,
+    page: 0,
     lessons: []
   };
 
+  handlePrevious = (e) => {
+    e.preventDefault();
+    const newPage = Math.max(0, this.state.page - 1);
+    Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
+      this.setState({
+        count: result.data.count,
+        page: newPage,
+        lessons: result.data.lessons
+      });
+    });
+  };
+
+  currentPage = () => Math.floor(this.state.page / 3);
+
+  totalPages = () => Math.floor(this.state.count / 3);
+
+  handleNext = (e) => {
+    e.preventDefault();
+    const newPage = Math.min(this.state.count, this.state.page + 1);
+    Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
+      this.setState({
+        count: result.data.count,
+        page: newPage,
+        lesson: result.data.lessons
+      });
+    });
+  };
   componentDidMount() {
     Axios.get("/api/lessons").then((result) => {
       this.setState({ lessons: result.data.lessons });
@@ -26,7 +55,7 @@ class Lessons extends Component {
     const lessonList = this.state.lessons.map((item, key) => (
       <LessonCardContainer key={key}>
         <LessonLink to={`/lessons/${item.id}`}>
-          <LessonImage>url("{item.image}")</LessonImage>
+          {/* <LessonImage>url("{item.image}")</LessonImage> */}
           <LessonDetailsContainer>
             <LessonDetails>{item.title}</LessonDetails>
             <LessonDetails>{item.duration}</LessonDetails>
@@ -57,6 +86,26 @@ class Lessons extends Component {
 
         <LessonContainer>{lessonList}</LessonContainer>
         <div style={box2}></div>
+        <div className="page-container">
+          {this.currentPage() > 0 ? (
+            <a href="#" onClick={this.handlePrevious}>
+              Previous
+            </a>
+          ) : (
+            <div>Previous</div>
+          )}
+          <div className="page-total">
+            Total: {this.state.count}, page {this.currentPage()} of
+            {this.totalPages()}
+          </div>
+          {this.currentPage() < this.totalPages() ? (
+            <a href="#" onClick={this.handleNext}>
+              Next
+            </a>
+          ) : (
+            <div>Next</div>
+          )}
+        </div>
       </div>
     );
   }

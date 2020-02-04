@@ -1,18 +1,10 @@
-.pagination {
-  margin-top: 25px;
-}
-.pagination span {
-  cursor: pointer;
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  border: 1px solid #ddd;
+.page-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2rem;
 }
 
-.pagination span.active {
-  background-color: #0099ff;
-  color: white;
-  border: 1px solid #0099ff;
+.page-total {
+  flex-grow: 2;
+  text-align: center;
 }

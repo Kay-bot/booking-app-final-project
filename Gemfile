@@ -50,5 +50,3 @@ gem "awesome_print"
 gem "aws-sdk-s3", require: false
 
 gem 'image_processing'
-
-gem "kaminari", "~> 1.2"

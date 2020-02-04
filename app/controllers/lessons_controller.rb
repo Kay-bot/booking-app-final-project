@@ -6,9 +6,11 @@ class LessonsController < ApiController
   LESSONS_PER_PAGE = 3
 
   def index
+    @lesson_count = Lesson.count.to_i
+    @total_page = (@lesson_count.to_i / LESSONS_PER_PAGE)
     @page = params.fetch(:page, 0).to_i
     @lessons = Lesson.offset(@page * LESSONS_PER_PAGE).limit(LESSONS_PER_PAGE)
-    render json: {lessons: @lessons, page: @page, count: @lesson_count}, status: :ok
+    render json: {lessons: @lessons, page: @page, total_page: @total_page, count: @lesson_count}, status: :ok
   end
 
   def show
