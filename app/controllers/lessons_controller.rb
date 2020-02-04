@@ -8,11 +8,12 @@ class LessonsController < ApiController
   def index
     @page = params.fetch(:page, 0).to_i
     @lessons = Lesson.offset(@page * LESSONS_PER_PAGE).limit(LESSONS_PER_PAGE)
-    render json: @lessons, status: :ok
+    render json: {lessons: @lessons, page: @page, count: @lesson_count}, status: :ok
   end
 
   def show
-    
+    @lesson = Lesson.find(params[:id])
+    render json: {lesson: @lesson}, status: :ok
   end
 
   def create
@@ -39,7 +40,7 @@ class LessonsController < ApiController
 
   private
   def set_lesson
-      @lesson = Lesson.find(params[:id])
+    Lesson.find(params[:id])
   end
 
   def lesson_params

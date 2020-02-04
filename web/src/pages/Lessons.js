@@ -9,24 +9,24 @@ import {
   LessonDetails
 } from "../styles/LessonHomeStyle";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
 class Lessons extends Component {
   state = {
     lessons: []
   };
+
   componentDidMount() {
-    fetch("/api/lessons")
-      .then((response) => response.json())
-      .then((json) => {
-        this.setState({ lessons: json });
-      });
+    Axios.get("/api/lessons").then((result) => {
+      this.setState({ lessons: result.data.lessons });
+    });
   }
 
   render() {
     const lessonList = this.state.lessons.map((item, key) => (
       <LessonCardContainer key={key}>
-        <LessonLink to={`/lesson/${this.props.lessonId}`}>
-          {/* <LessonImage>url("{item.image}")</LessonImage> */}
+        <LessonLink to={`/lessons/${item.id}`}>
+          <LessonImage>url("{item.image}")</LessonImage>
           <LessonDetailsContainer>
             <LessonDetails>{item.title}</LessonDetails>
             <LessonDetails>{item.duration}</LessonDetails>
@@ -54,14 +54,9 @@ class Lessons extends Component {
         <StyledHero>
           <h1>Upcoming Lessons in 2020</h1>
         </StyledHero>
-        {/* <Container> */}
-        <LessonContainer>{lessonList}</LessonContainer>
-        <div style={box2}>
-          <Link to="/(@page - 1)">Previous Page</Link> &nbsp;|&nbsp;
-          <Link to="/(@page + 1)">Next Page</Link>
-        </div>
 
-        {/* </Container> */}
+        <LessonContainer>{lessonList}</LessonContainer>
+        <div style={box2}></div>
       </div>
     );
   }

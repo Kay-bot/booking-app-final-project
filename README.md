@@ -2,6 +2,20 @@
 
 Booking app
 
+To do outline the project requirements in the perspective of how the user interacts
+
+The app will have the following features:
+
+Must have
+As a user I can xxxxx
+As a user I can xxxxx
+
+Should have
+
+Could have
+
+---
+
 Deploy: https://dashboard.heroku.com/apps/booking-app-final-project
 
 Fronend: built on React

@@ -51,7 +51,7 @@ class Routes extends Component {
               </HomeHero>
             </Route>
             <Route exact path="/lessons" component={Lessons} />
-            <Route exact path="/lessons/:lesson_id" component={SingleLesson} />
+            <Route exact path="/lessons/:id" component={SingleLesson} />
             <Route exact path="/schedules" component={Schedules} />
             <Route exact path="/add-lessons" component={LessonForm} />
             <Route exact path="/login" component={Login} />

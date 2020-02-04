@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :accounts
 
   get 'api/lessons', to: 'lessons#index'
+  get 'api/lessons/:id', to: 'lessons#show'
   post 'lessons', to: 'lessons#create'
 
   get 'api/users', to: 'users#index'
