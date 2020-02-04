@@ -11,7 +11,7 @@ import {
 } from "../styles/LessonHomeStyle";
 import { Link } from "react-router-dom";
 
-class Home extends Component {
+class Lessons extends Component {
   state = {
     lessons: []
   };
@@ -39,7 +39,16 @@ class Home extends Component {
       </LessonCardContainer>
     ));
     const box = {
-      padding: "100px"
+      padding: "100px",
+      position: "reletive"
+    };
+    const box2 = {
+      margin: "0",
+      position: "absolute",
+      top: "90%",
+      left: "50%",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)"
     };
     return (
       <div style={box}>
@@ -48,12 +57,15 @@ class Home extends Component {
         </HomeHero>
         {/* <Container> */}
         <LessonContainer>{lessonList}</LessonContainer>
-        <Link to="/(@page - 1)">Previous Page</Link> &nbsp; &nbsp;
-        <Link to="/(@page + 1)">Next Page</Link>
+        <div style={box2}>
+          <Link to="/(@page - 1)">Previous Page</Link> &nbsp;|&nbsp;
+          <Link to="/(@page + 1)">Next Page</Link>
+        </div>
+
         {/* </Container> */}
       </div>
     );
   }
 }
 
-export default Home;
+export default Lessons;
