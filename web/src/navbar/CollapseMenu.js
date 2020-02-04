@@ -20,8 +20,8 @@ const CollapseMenu = (props) => {
       >
         <NavLinks>
           <li>
-            <Link to="/" onClick={props.handleNavbar}>
-              Home
+            <Link to="/Lessons" onClick={props.handleNavbar}>
+              Lessons
             </Link>
           </li>
 
