@@ -9,6 +9,7 @@ import {
   LessonImage,
   LessonDetails
 } from "../styles/LessonHomeStyle";
+import { Link } from "react-router-dom";
 
 class Home extends Component {
   state = {
@@ -38,16 +39,18 @@ class Home extends Component {
       </LessonCardContainer>
     ));
     const box = {
-      padding: "80px"
+      padding: "100px"
     };
     return (
       <div style={box}>
         <HomeHero>
           <h1>Upcoming Lessons in 2020</h1>
         </HomeHero>
-        <Container>
-          <LessonContainer>{lessonList}</LessonContainer>
-        </Container>
+        {/* <Container> */}
+        <LessonContainer>{lessonList}</LessonContainer>
+        <Link to="/(@page - 1)">Previous Page</Link> &nbsp; &nbsp;
+        <Link to="/(@page + 1)">Next Page</Link>
+        {/* </Container> */}
       </div>
     );
   }

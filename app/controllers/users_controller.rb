@@ -8,7 +8,6 @@ class UsersController < ApiController
     authorize_request User
   end
   
-
   def create
     userParams = params.require(:user)
       .permit(:email, :password, :password_confirmation)

@@ -1,13 +1,18 @@
 class LessonsController < ApiController
+
+
   before_action :set_lesson, only: [:show, :update, :destroy]
 
+  LESSONS_PER_PAGE = 3
+
   def index
-    render json: Lesson.all.as_json, status: :ok
-    # @lessons = Lesson.paginate(:page => params[:page], :per_page => 6).order('sort ASC')
+    @page = params.fetch(:page, 0).to_i
+    @lessons = Lesson.offset(@page * LESSONS_PER_PAGE).limit(LESSONS_PER_PAGE)
+    render json: @lessons, status: :ok
   end
 
   def show
-    @others = Lesson.paginate(:page => params[:page], :per_page => 4).order('sort ASC')
+    
   end
 
   def create
