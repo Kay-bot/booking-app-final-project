@@ -1,22 +1,23 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
-import LoginForm from "../forms/LoginForm";
+import { Redirect, Link } from "react-router-dom";
+import moewLogo from "../assets/meowLogo.jpg";
 import axios from "axios";
 import { useAuth } from "../context/auth";
-import { Error } from "../forms/AuthForm";
+import { Card, Logo, Form, Input, Button, Error } from "../forms/AuthForm";
 import { Container } from "../styles/Container";
 
 function Login(props) {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [email, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
-  // const referer = props.location.state.referer || "/";
 
-  function postLogin(data) {
+  function postLogin() {
     axios
-      .post(`api/users/login`, {
-        email: data.email,
-        password: data.password
+      .post(`/authenticate`, {
+        email,
+        password
       })
       .then((result) => {
         if (result.status === 200) {
@@ -35,9 +36,32 @@ function Login(props) {
   }
   return (
     <Container>
-      <LoginForm onLogin={(data) => postLogin(data)}>
-        <p>{isError && <Error>Incorrect username or password!</Error>}</p>
-      </LoginForm>
+      <Card>
+        <Logo src={moewLogo} />
+        <Form>
+          <Input
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}
+            placeholder="email"
+          />
+          <Input
+            type="password"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            placeholder="password"
+          />
+          <Button onClick={postLogin}>Sign In</Button>
+        </Form>
+        <Link to="/register">Don't have an account?</Link>
+        {isError && (
+          <Error>The username or password provided were incorrect!</Error>
+        )}
+      </Card>
     </Container>
   );
 }
