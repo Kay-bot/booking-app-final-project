@@ -1,11 +1,14 @@
 class ApplicationController < ActionController::Base
-    skip_before_action :verify_authenticity_token
-    before_action :authenticate_request
-        attr_reader :current_user
+
+    before_action :authenticate_request, except: [:new, :create, :index, :authenticate]
+        
+    attr_reader :current_user
+   
    
     def fallback_index_html
         render :file => 'public/index.html'
     end
+
 
     private
 
