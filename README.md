@@ -35,3 +35,5 @@ Backend user authentication, very good one, read here: https://www.pluralsight.c
 https://dev.to/nunocpnp/
 
 Frontend user authentication, this here: https://medium.com/better-programming/building-basic-react-authentication-e20a574d5e71
+
+Convert React Class Component to React Functional Component with Hooks, read here: https://medium.com/@olinations/10-steps-to-convert-a-react-class-component-to-a-functional-component-with-hooks-ab198e0fa139
