@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   # resources :users
   resources :accounts
 
+  post 'authenticate', to: 'authentication#authenticate'
+
   get 'api/lessons', to: 'lessons#index'
   get 'api/lessons/:id', to: 'lessons#show'
   post 'api/lessons', to: 'lessons#create'
@@ -16,7 +18,6 @@ Rails.application.routes.draw do
 
   get 'api/users', to: 'users#index'
   post 'api/users', to: 'users#create'
-  post "api/users/login", to: "users#login"
   get 'api/users/:user_id', to: 'users#get_user_id'
   put 'api/users/:user_id', to: 'users#update_profile'
   delete 'api/users/:user_id', to: 'users#delete'
