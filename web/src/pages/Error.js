@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import { Container } from "../styles/Container";
 
 class Error extends Component {
   state = {};
   render() {
-    return <div>No page found</div>;
+    return (
+      <Container>
+        <div>Page not found</div>
+      </Container>
+    );
   }
 }
 
