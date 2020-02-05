@@ -5,13 +5,14 @@ export const LessonContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  width: 100%;
 `;
 
 export const LessonCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  width: 20%;
+  width: 30%;
   margin: 1%;
   transition: all 0.2s ease-in-out;
 
@@ -35,12 +36,14 @@ export const LessonImage = styled.img`
 export const LessonDetailsContainer = styled.div`
   padding: 10px;
   border: 1px solid #ccc;
-  height: 200px;
+  border-top: none;
+  height: 80px;
 `;
 
 export const LessonDetails = styled.p`
-  font-weight: ${(props) => (props.light ? "300" : "700")};
+  font-size: 16px;
   margin: 5px;
+  line-height: 15px;
 `;
 
 export const LessonLink = styled(Link)`

@@ -9,9 +9,9 @@ class LessonForm extends Component {
     super(props);
     this.state = {
       values: {
-        image: [],
+        url: "",
         title: "",
-        duration: [],
+        duration: "",
         cost: [],
         category: "",
         language: ["Thai", "Espanal", "Greek", "English"],
@@ -30,7 +30,7 @@ class LessonForm extends Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
-    const res = await fetch(`http://localhost:3001/lessons`, {
+    const res = await fetch(`http://localhost:3001/api/lessons`, {
       method: "POST",
       body: JSON.stringify(this.state.values),
       headers: {
@@ -49,7 +49,7 @@ class LessonForm extends Component {
           isError: false,
           message: "",
           values: {
-            image: [],
+            url: "",
             title: "",
             duration: [],
             cost: [],
@@ -63,11 +63,6 @@ class LessonForm extends Component {
     );
   };
 
-  onDrop = (img) =>
-    this.setState({
-      image: this.state.values.image.concat(img)
-    });
-
   handleInputChange = (e) =>
     this.setState({
       values: { ...this.state.values, [e.target.name]: e.target.value }
@@ -80,18 +75,17 @@ class LessonForm extends Component {
           <h1>Add New Lession</h1>
           <form onSubmit={this.submitForm}>
             <div className="input-group">
-              <label htmlFor="image">Image</label>
-              <ImageUploader
-                withIcon={true}
-                buttonText="Choose images"
-                name="image"
-                id="image"
-                value={this.state.values.image}
-                onChange={this.onDrop}
-                imgExtension={[".jpg", ".gif", ".png", ".gif"]}
-                maxFileSize={5242880}
-                title="Image"
+              <label htmlFor="url">Image</label>
+              <input
+                type="text"
+                name="url"
+                id="url"
+                value={this.state.values.url}
+                onChange={this.handleInputChange}
+                title="Url"
                 required
+                placeholder="Enter image url"
+                className="input-box"
               />
             </div>
             <div className="input-group">
@@ -207,7 +201,7 @@ class LessonForm extends Component {
             </button>
           </form>
           <div className={`message ${this.state.isError && "error"}`}>
-            {this.state.isSubmitting ? "Submitting..." : this.state.message}
+            {this.state.isSubmitting ? "Submittisng..." : this.state.message}
           </div>
         </div>
       </StyledHero>

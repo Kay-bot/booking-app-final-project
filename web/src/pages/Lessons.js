@@ -20,34 +20,34 @@ class Lessons extends Component {
 
   handlePrevious = (e) => {
     e.preventDefault();
-    const newPage = Math.max(0, this.state.page - 1);
+    const newPage = Math.max(0, this.state.page - 6);
     Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
-        page: newPage,
+        offset: newPage,
         lessons: result.data.lessons
       });
     });
   };
 
-  currentPage = () => Math.floor(this.state.page / 3);
+  currentPage = () => Math.floor(this.state.page / 6);
 
-  totalPages = () => Math.floor(this.state.count / 3);
+  totalPages = () => Math.floor(this.state.count / 6);
 
   handleNext = (e) => {
     e.preventDefault();
-    const newPage = Math.min(this.state.count, this.state.page + 1);
+    const newPage = Math.min(this.state.count, this.state.page + 6);
     Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
-        page: newPage,
+        offset: newPage,
         lesson: result.data.lessons
       });
     });
   };
   componentDidMount() {
     Axios.get("/api/lessons").then((result) => {
-      this.setState({ lessons: result.data.lessons });
+      this.setState({ lessons: result.data.lessons, count: result.data.count });
     });
   }
 
@@ -55,13 +55,14 @@ class Lessons extends Component {
     const lessonList = this.state.lessons.map((item, key) => (
       <LessonCardContainer key={key}>
         <LessonLink to={`/lessons/${item.id}`}>
-          {/* <LessonImage>url("{item.image}")</LessonImage> */}
+          <LessonImage src={item.url} />
           <LessonDetailsContainer>
-            <LessonDetails>{item.title}</LessonDetails>
-            <LessonDetails>{item.duration}</LessonDetails>
-            <LessonDetails> {item.cost}</LessonDetails>
-            <LessonDetails>{item.language}</LessonDetails>
-            <LessonDetails> {item.level}</LessonDetails>
+            <LessonDetails>
+              <b>{item.title}</b>
+            </LessonDetails>
+            <LessonDetails>
+              <b>Cost:</b> ${item.cost} AUD
+            </LessonDetails>
           </LessonDetailsContainer>
         </LessonLink>
       </LessonCardContainer>

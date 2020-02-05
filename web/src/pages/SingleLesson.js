@@ -18,12 +18,24 @@ class SingleLesson extends Component {
       <Container>
         {this.state.lesson ? (
           <div>
-            <h1>{this.state.lesson.title}</h1>
-            <p>{this.state.lesson.cost}</p>
-            <p>{this.state.lesson.duration}</p>
-            <p>{this.state.lesson.level}</p>
-            <p>{this.state.lesson.language}</p>
-            <p>{this.state.lesson.description}</p>
+            <div>
+              <img src={this.state.lesson.url} />
+            </div>
+
+            <b>{this.state.lesson.title}</b>
+            <p>
+              <b>Cost: </b>${this.state.lesson.cost} AUD <b>Duration:</b>
+              &nbsp; Approx. {this.state.lesson.duration} hours
+            </p>
+            <p>
+              <b>Level:</b> {this.state.lesson.level} &nbsp;
+              <b>Language: </b>
+              {this.state.lesson.language}
+            </p>
+            <p>
+              <b>Class description: </b>
+              {this.state.lesson.description}
+            </p>
           </div>
         ) : (
           <p>No lesson details</p>

@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   get 'api/lessons', to: 'lessons#index'
   get 'api/lessons/:id', to: 'lessons#show'
-  post 'lessons', to: 'lessons#create'
+  post 'api/lessons', to: 'lessons#create'
+  put 'api/lessons/:id', to: 'lessons#update'
+  delete 'api/lessons/:id', to: 'lessons#delete'
 
   get 'api/users', to: 'users#index'
   post 'api/users', to: 'users#create'

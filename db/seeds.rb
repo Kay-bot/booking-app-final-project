@@ -18,38 +18,79 @@ client = Account.create(
     account_type: "Client"
     );
 
-# kay = User.create(
-#     email:'kay@ga.com.au', 
-#     password_digest:'123456', 
-#     is_admin: true,
-#     account_id: 1
-#     );
+kay = User.create(
+    email:'kay@ga.com.au', 
+    password:'123456', 
+    is_admin: true
 
-# otis = User.create(
-#     email:'otis@ga.com.au', 
-#     password_digest:'123456', 
-#     is_admin: false,
-#     account_id: 1
-#     );
+    );
 
-# maeve = User.create(
-#     email:'maeve@ga.com.au', 
-#     password_digest:'123456', 
-#     is_admin: false,
-#     account_id: 1
-#     );
+otis = User.create(
+    email:'otis@ga.com.au', 
+    password:'123456', 
+    is_admin: false
+
+    );
+
+maeve = User.create(
+    email:'maeve@ga.com.au', 
+    password:'123456', 
+    is_admin: false
+ 
+    );
 
 Lesson.create(
-    image: 'https://imgur.com/rYq0OJN', 
-    title: 'Learn how to make Papaya Salad',
-    duration: 30,
+    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
+    title: 'Make Papaya Salad',
+    duration: 1,
     cost:50,
     category: '',
     language: 'Thai',
-    level: 'Beginner',
+    level: 'Intermediat',
     description: 'You will learn how to make Papaya Salad'
     );
 
-puts "seeding data base created #{Account.all.length}"
-puts "seeding data base created #{User.all.length}"
-puts "seeding data base created #{Lesson.all.length}"
+Lesson.create(
+    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
+    title: 'Make Beef Jerky',
+    duration: 1-2,
+    cost:100,
+    category: '',
+    language: 'English',
+    level: 'Advance',
+    description: 'You will learn how to make Beef Jerky'
+    );
+Lesson.create(
+    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
+    title: 'Make Green Curry',
+    duration: 1,
+    cost:20,
+    category: '',
+    language: 'English',
+    level: 'Beginner',
+    description: 'You will learn how to make Green Curry'
+    );
+Lesson.create(
+    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
+    title: 'Make Pad Thai',
+    duration: 1-2,
+    cost:50,
+    category: '',
+    language: 'English',
+    level: 'Intermediate',
+    description: 'You will learn how to make Pad Thai'
+    );
+Lesson.create(
+    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
+    title: 'Make Basil Stirfry',
+    duration: 1,
+    cost:50,
+    category: '',
+    language: 'English',
+    level: 'Beginner',
+    description: 'You will learn how to make Basil Stirfry'
+    );
+
+puts "seeding Accounts database created #{Account.all.length}"
+puts "seeding Users database created #{User.all.length}"
+puts "seeding Lessons database created #{Lesson.all.length}"

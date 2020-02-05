@@ -1,16 +1,15 @@
 class LessonsController < ApiController
 
 
-  before_action :set_lesson, only: [:show, :update, :destroy]
+  # before_action :set_lesson, only: [:show, :update, :destroy]
 
-  LESSONS_PER_PAGE = 3
+  LESSONS_PER_PAGE = 10
 
   def index
     @lesson_count = Lesson.count.to_i
-    @total_page = (@lesson_count.to_i / LESSONS_PER_PAGE)
     @page = params.fetch(:page, 0).to_i
     @lessons = Lesson.offset(@page * LESSONS_PER_PAGE).limit(LESSONS_PER_PAGE)
-    render json: {lessons: @lessons, page: @page, total_page: @total_page, count: @lesson_count}, status: :ok
+    render json: {lessons: @lessons, page: @page, count: @lesson_count}, status: :ok
   end
 
   def show
@@ -29,6 +28,7 @@ class LessonsController < ApiController
   end
 
   def update
+    @lesson = Lesson.find params[:id]
     if @lesson.update(lesson_params)
       render json: @lesson
     else
@@ -36,16 +36,18 @@ class LessonsController < ApiController
     end
   end
 
-  def destroy
+  def delete
+    @lesson = Lesson.find(params[:id])
     @lesson.destroy
+    render json: { message: "lesson deleted" }, status: :ok
   end
 
   private
-  def set_lesson
-    Lesson.find(params[:id])
-  end
+  # def set_lesson
+  #   Lesson.find(params[:id])
+  # end
 
   def lesson_params
-    params.require(:lesson).permit(:title, :duration, :cost, :category, :language, :level, :description, images:[])
+    params.require(:lesson).permit(:title, :duration, :cost, :category, :language, :level, :description, :url)
   end
 end
