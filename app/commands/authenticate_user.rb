@@ -1,4 +1,4 @@
-class AuthenticateUser < ApiController
+class AuthenticateUser 
     prepend SimpleCommand
 
     def initialize(email, password)

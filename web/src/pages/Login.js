@@ -12,7 +12,6 @@ function Login(props) {
   const [email, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthTokens } = useAuth();
-  // const referer = props.location.state.referer || "/";
 
   function postLogin() {
     axios
@@ -33,7 +32,7 @@ function Login(props) {
       });
   }
   if (isLoggedIn) {
-    return <Redirect to="/" />;
+    return <Redirect to="/admin" />;
   }
   return (
     <Container>
