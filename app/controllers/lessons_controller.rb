@@ -18,7 +18,7 @@ class LessonsController < ApiController
     @lesson = Lesson.new(lesson_params)
 
     if @lesson.save
-      render json: @lesson, status: :created, status: :ok
+      render json: @lesson, status: :created
     else
       render json: @lesson.errors, status: :unprocessable_entity
     end
