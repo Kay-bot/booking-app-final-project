@@ -1,8 +1,5 @@
 class LessonsController < ApiController
 
-
-  # before_action :set_lesson, only: [:show, :update, :destroy]
-
   LESSONS_PER_PAGE = 10
 
   def index
@@ -43,10 +40,7 @@ class LessonsController < ApiController
   end
 
   private
-  # def set_lesson
-  #   Lesson.find(params[:id])
-  # end
-
+  
   def lesson_params
     params.require(:lesson).permit(:title, :duration, :cost, :category, :language, :level, :description, :url)
   end
