@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
-    before_action :authenticate_request, except: [:new, :create, :index, :authenticate]
+    skip_before_action :verify_authenticity_token
+    before_action :authenticate_request, except: [:new, :create, :index, :authenticate] :raise => false
         
     attr_reader :current_user
    
