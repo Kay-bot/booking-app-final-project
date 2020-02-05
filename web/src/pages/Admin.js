@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "../styles/Container";
 import { Button } from "../forms/AuthForm";
 import { useAuth } from "../context/auth";
 
@@ -10,10 +11,10 @@ function Admin(props) {
   }
 
   return (
-    <div>
+    <Container>
       <div>Admin Page</div>
       <Button onClick={logOut}>Log out</Button>
-    </div>
+    </Container>
   );
 }
 
