@@ -24,3 +24,4 @@ Backend: built on rails
 references:
 https://medium.com/@TressaSanders/how-to-build-a-booking-system-with-ruby-on-rails-part-1-d9d57ed94d32
 https://medium.com/@TressaSanders/how-to-build-a-booking-system-with-ruby-on-rails-part-2-f4ce78524fad
+https://www.pluralsight.com/guides/token-based-authentication-with-ruby-on-rails-5-api
