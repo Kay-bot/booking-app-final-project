@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
+import { Redirect, Link } from "react-router-dom";
 import Axios from "axios";
 import {
   BookingWrapper,
@@ -36,6 +37,11 @@ class BookingForm extends Component {
     );
   };
 
+  handleClick = () => {
+    console.log("I'm clicked");
+    //Intend to redirect to /cart
+  };
+
   render() {
     const { selectedOption } = this.state;
     return (
@@ -43,22 +49,24 @@ class BookingForm extends Component {
         <InnerContainer>
           <Subheader>Booking button and schedule will be here!</Subheader>
           <FormContain>
-            <formBform>
-              <diInputDiv>
+            <Bform>
+              <InputDiv>
                 <Select
                   value={selectedOption}
                   onChange={this.handleChange}
                   options={options}
                 />
-              </diInputDiv>
+              </InputDiv>
               <BtnDiv>
-                <BookBtn primary>Book</BookBtn>
+                <BookBtn primary onClick={this.handleClick}>
+                  Book
+                </BookBtn>
               </BtnDiv>
               <Pdiv>
                 <P>Free to cancel (with 5 days notice)</P>
                 <P>Book at least 24 hours before each date</P>
               </Pdiv>
-            </formBform>
+            </Bform>
           </FormContain>
         </InnerContainer>
       </BookingWrapper>
@@ -84,11 +92,12 @@ export const InputDiv = styled.div`
 `;
 
 export const BtnDiv = styled.div`
-  text-align: center;
-  top: -3px;
+  position: absolute;
+  top: -14px;
+  right: 0;
 `;
 
 export const Pdiv = styled.div`
-  margin-top: 14px;
+  margin-top: 20px;
   line-height: 5px;
 `;

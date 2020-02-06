@@ -59,6 +59,9 @@ export const BookBtn = styled.button`
   border: 2px solid palevioletred;
   border-radius: 3px;
   cursor: pointer;
+  line-height: 21px;
+  font-weight: 700;
+  height: 36px;
 `;
 export const InnerContainer = styled.div`
   padding: 24px;
