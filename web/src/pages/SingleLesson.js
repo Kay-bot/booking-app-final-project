@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import Axios from "axios";
-import { Container } from "../styles/Container";
+import {
+  SingleLessonWrapper,
+  SingleLessonContainer,
+  SingleLessonImage,
+  SLDetailsContainer
+} from "../styles/SingLessonStyled";
+
+import BookingForm from "../forms/BookingForm";
 
 class SingleLesson extends Component {
   state = {
@@ -15,32 +22,34 @@ class SingleLesson extends Component {
   }
   render() {
     return (
-      <Container>
-        {this.state.lesson ? (
-          <div>
+      <SingleLessonWrapper>
+        <SingleLessonContainer>
+          {this.state.lesson ? (
             <div>
-              <img src={this.state.lesson.url} />
+              <SingleLessonImage src={this.state.lesson.url} />
+              <SLDetailsContainer>
+                <b>{this.state.lesson.title}</b>
+                <p>
+                  <b>Cost: </b>${this.state.lesson.cost} AUD <b>Duration:</b>
+                  &nbsp; Approx. {this.state.lesson.duration} hours
+                </p>
+                <p>
+                  <b>Level:</b> {this.state.lesson.level} &nbsp;
+                  <b>Language: </b>
+                  {this.state.lesson.language}
+                </p>
+                <p>
+                  <b>Class description: </b>
+                  {this.state.lesson.description}
+                </p>
+              </SLDetailsContainer>
             </div>
-
-            <b>{this.state.lesson.title}</b>
-            <p>
-              <b>Cost: </b>${this.state.lesson.cost} AUD <b>Duration:</b>
-              &nbsp; Approx. {this.state.lesson.duration} hours
-            </p>
-            <p>
-              <b>Level:</b> {this.state.lesson.level} &nbsp;
-              <b>Language: </b>
-              {this.state.lesson.language}
-            </p>
-            <p>
-              <b>Class description: </b>
-              {this.state.lesson.description}
-            </p>
-          </div>
-        ) : (
-          <p>No lesson details</p>
-        )}
-      </Container>
+          ) : (
+            <p>No lesson details</p>
+          )}
+        </SingleLessonContainer>
+        <BookingForm />
+      </SingleLessonWrapper>
     );
   }
 }
