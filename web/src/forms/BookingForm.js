@@ -99,5 +99,5 @@ export const BtnDiv = styled.div`
 
 export const Pdiv = styled.div`
   margin-top: 20px;
-  line-height: 5px;
+  line-height: 20px;
 `;
