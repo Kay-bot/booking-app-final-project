@@ -10,6 +10,7 @@ import {
 } from "../styles/LessonHomeStyle";
 import "../styles/pagination.css";
 import Axios from "axios";
+import styled from "styled-components";
 
 class Lessons extends Component {
   state = {
@@ -20,34 +21,43 @@ class Lessons extends Component {
 
   handlePrevious = (e) => {
     e.preventDefault();
-    const newPage = Math.max(0, this.state.page - 6);
+    const newPage = Math.max(0, this.state.page - 1);
     Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
-        offset: newPage,
+        page: newPage,
         lessons: result.data.lessons
       });
     });
   };
 
-  currentPage = () => Math.floor(this.state.page / 6);
+  currentPage = () => this.state.page;
 
-  totalPages = () => Math.floor(this.state.count / 6);
+  totalPages = () => Math.floor(this.state.count / 3);
 
   handleNext = (e) => {
     e.preventDefault();
-    const newPage = Math.min(this.state.count, this.state.page + 6);
+    console.log(">>>>> handleNext");
+
+    const newPage = Math.min(this.state.count, this.state.page + 1);
+    console.log("New page: " + newPage);
     Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
-        offset: newPage,
-        lesson: result.data.lessons
+        page: newPage,
+        lessons: result.data.lessons
       });
     });
   };
   componentDidMount() {
+    console.log(">>>>> componentDidMount");
+
     Axios.get("/api/lessons").then((result) => {
-      this.setState({ lessons: result.data.lessons, count: result.data.count });
+      this.setState({
+        lessons: result.data.lessons,
+        page: 0,
+        count: result.data.count
+      });
     });
   }
 
