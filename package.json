@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "package.json": "^2.0.1",
-    "react-images-upload": "^1.2.7"
+    "package.json": "^2.0.1"
   },
   "name": "booking-app",
   "version": "1.0.0",

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../styles/form.css";
 import StyledHero from "../styles/StyledHero";
 import TextareaAutosize from "react-textarea-autosize";
-import ImageUploader from "react-images-upload";
 
 class LessonForm extends Component {
   constructor(props) {
