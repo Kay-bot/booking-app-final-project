@@ -3,7 +3,7 @@ import "./styles/App.css";
 import HomeHero from "./styles/HomeHero";
 
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import PrivateRoute from "./pages/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 
 import Lessons from "./pages/Lessons";
 import Admin from "./pages/Admin";
