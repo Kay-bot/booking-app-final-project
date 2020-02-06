@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :trainers
   resources :lessons
   # resources :users
-  resources :accounts
+  resources :account
 
   post 'authenticate', to: 'authentication#authenticate'
 
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   # post 'api/auth/login', to: 'authentication#login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
+    puts "Falling back to index.html..."
     !request.xhr? && request.format.html?
   end
 end

@@ -1,6 +1,9 @@
 class UsersController < ApiController
 
-  before_action :authorize_request, except: %i[create index]
+  before_action :authorize_request, except: %i[create index, get_by_id]
+
+  attr_reader :current_user
+   
 
   def index
     @users = User.all
@@ -61,5 +64,22 @@ class UsersController < ApiController
       render json: { errors: "User not found" }, status: :not_found
     end
   end
+
+  private
+
+    # def route_user
+    #   target_path = '/authenticate'      
+    #   if user_signed_in?       
+    #     target_path =  '/admin/admins/dashboard' if current_user.admin?       
+    #     target_path =  '/parent/parents/dashboard' if current_user.parent?       
+    #     target_path =  '/mosque/mosques/dashboard' if current_user.mosque?
+    #   end    
+    #   redirect_to target_path
+    # end
+
+    def authenticate_request
+      @current_user = AuthorizeApiRequest.call(request.headers).result
+      render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+    end
 
 end
