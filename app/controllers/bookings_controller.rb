@@ -46,6 +46,6 @@ class BookingsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def booking_params
-      params.require(:booking).permit(:status, :title, :cost, :start, :cancellation_reason, :refunded, :client_id, :integer, :trainer_id, :schedule_id, :lesson_id, :account_id)
+      params.require(:booking).permit(:status, :title, :cost, :start, :refunded, :client_id, :trainer_id, :schedule_id, :lesson_id, :account_id)
     end
 end

@@ -1,6 +1,8 @@
 class UsersController < ApiController
 
-  before_action :authenticate_request, except: %i[create, index, show]
+  before_action :set_lesson, only: [:new]
+  before_action :authenticate_request, except: %i[create, index, get_id]
+  
 
   attr_reader :current_user
    
@@ -22,7 +24,7 @@ class UsersController < ApiController
     end
   end
 
-  def show
+  def get_id
     user = User.find_by(id: params[:user_id])
     if user
       render json: user.name, status: :ok
@@ -65,9 +67,10 @@ class UsersController < ApiController
     end
   end
 
-  before_action :set_lesson, only: [:new]
+   ##------Booking Logic------##----------##---------------------###
 
   def new
+    @lesson = Lesson.find_by(id: params[:lesson_id])
     @account = Account.new
     @user = User.new 
     @client = Client.new
@@ -76,25 +79,26 @@ class UsersController < ApiController
     @schedules = Schedule.where('start >= ? and start <=  ?', Date.today + 1.day, Date.today + 2.weeks).where(title: 'Available').order('start ASC').all
   end
 
-  def create_client_account
-    @user = User.new(user_params)
-    @user.account_id = @account.id
-    
-    respond_to do |format|
-      if @user.save
-        create_client_profile
-        create_client_booking
-        create_client_lesson_payment
-        auto_login(@user)
-        UserMailer.new_signup_booking_admin(@user, @booking).deliver_later
-        UserMailer.new_signup_booking_client(@user, @booking).deliver_later
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
+  def create_booking
+    @lesson = Lesson.find_by(id: params[:lesson_id])
+    # create_client_charge
+    #to decide how I am going to do it
+    create_client_account  
+      @user = User.new()
+      @user.account_id = @account.id
+        
+        if @user.save
+          create_client_profile
+          create_client_booking
+          create_client_lesson_payment
+        
+          render json: @booking.to_json, status: :created
+        else
+          render json: {errors: "Booking failed"}, status: :unprocessable_entity
+        end
+     
   end
-
+      ##------Booking Logic------##----------##---------------------###
   private
 
     def authenticate_request
@@ -108,8 +112,6 @@ class UsersController < ApiController
 
     def create_client_account
       @account = Account.new()
-      @account.status = 'active'
-      @account.account = 'prefix-' + SecureRandom.hex(4)
       @account.account_type = 'client'
       @account.save
     end

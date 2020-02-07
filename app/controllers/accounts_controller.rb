@@ -1,19 +1,17 @@
 class AccountsController < ApiController
   before_action :set_account, only: [:show, :update, :destroy]
 
-  # GET /accounts
   def index
     @accounts = Account.all
 
     render json: @accounts
   end
 
-  # GET /accounts/1
   def show
+    @account = Account.find(params[:id])
     render json: @account
   end
 
-  # POST /accounts
   def create
     @account = Account.new(account_params)
 
@@ -24,8 +22,8 @@ class AccountsController < ApiController
     end
   end
 
-  # PATCH/PUT /accounts/1
   def update
+    @account = Account.find(params[:id])
     if @account.update(account_params)
       render json: @account
     else
@@ -33,8 +31,8 @@ class AccountsController < ApiController
     end
   end
 
-  # DELETE /accounts/1
   def destroy
+    @account = Account.find(params[:id])
     @account.destroy
   end
 
@@ -46,6 +44,6 @@ class AccountsController < ApiController
 
     # Only allow a trusted parameter "white list" through.
     def account_params
-      params.require(:account).permit(:user_id, :account_type)
+      params.require(:account).permit(:account_type)
     end
 end
