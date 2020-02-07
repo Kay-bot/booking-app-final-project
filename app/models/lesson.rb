@@ -1,7 +1,8 @@
 class Lesson < ApplicationRecord
-    has_many_attached :images
     
     has_many :trainers, :through => :bookings
+
+    has_many :schedules
   
     has_many :clients, :through => :bookings
     
