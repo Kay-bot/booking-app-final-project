@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   resources :lesson_payments
   resources :bookings
-  # resources :schedules
+  resources :schedules
   resources :clients
   resources :trainers
   resources :lessons
-  # resources :users
+  resources :users
   resources :account
 
   post 'authenticate', to: 'authentication#authenticate'
@@ -16,13 +16,6 @@ Rails.application.routes.draw do
   put 'api/lessons/:id', to: 'lessons#update'
   delete 'api/lessons/:id', to: 'lessons#delete'
 
-  get 'api/users', to: 'users#index'
-  post 'api/users', to: 'users#create'
-  get 'api/users/:user_id', to: 'users#get_user_id'
-  put 'api/users/:user_id', to: 'users#update_profile'
-  delete 'api/users/:user_id', to: 'users#delete'
-
-  # post 'api/auth/login', to: 'authentication#login'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
     puts "Falling back to index.html..."

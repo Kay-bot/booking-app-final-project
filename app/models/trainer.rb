@@ -1,10 +1,10 @@
 class Trainer < ApplicationRecord
 
     # Tenant Of
-  belongs_to :account, :inverse_of => :trainers
+  belongs_to :account, optional: true
   accepts_nested_attributes_for :account
   
-  belongs_to :user, :inverse_of => :trainers
+  belongs_to :user, optional: true
   accepts_nested_attributes_for :user
   
   has_many :bookings, dependent: :destroy, :inverse_of => :trainer

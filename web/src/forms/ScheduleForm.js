@@ -7,7 +7,7 @@ class ScheduleForm extends Component {
     super(props);
     this.state = {
       values: {
-        title: ["Available", "Booked"],
+        title: [],
         start: [],
         end: [],
         trainer_id: [],
@@ -27,7 +27,7 @@ class ScheduleForm extends Component {
     e.preventDefault(e);
     console.log(this.state);
     this.setState({ isSubmitting: true });
-    const res = await fetch(`/api/schedules`, {
+    const res = await fetch(`/schedules`, {
       method: "POST",
       body: JSON.stringify(this.state.values),
       headers: {
@@ -46,11 +46,11 @@ class ScheduleForm extends Component {
           isError: false,
           message: "",
           values: {
-            title: ["Available", "Booked"],
+            title: "",
             start: [],
             end: [],
-            trainer_id: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-            account_id: [1, 2]
+            trainer_id: [],
+            account_id: []
           }
         }),
       1600
@@ -180,9 +180,8 @@ class ScheduleForm extends Component {
               required
               style={select}
             >
-              <option value="1" selected="selected">
-                Trainer
-              </option>
+              <option value="1">Trainer</option>
+              <option value="2">Client</option>
             </select>
           </div>
           <button style={button} type="submit">

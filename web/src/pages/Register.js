@@ -10,7 +10,7 @@ const Register = () => {
   const [isError, setIsError] = useState(false);
   const handleSignup = (data) => {
     axios
-      .post(`/api/users`, {
+      .post(`/users`, {
         user: {
           email: data.email,
           password: data.password,
