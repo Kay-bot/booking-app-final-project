@@ -169,15 +169,17 @@ Schedule.create(
     title:"Available", 
     start:"2020-02-15T09:00", 
     end:"2020-02-15T18:00", 
-    trainer_id:"1", 
-    account_id:"1"
+    trainer_id:1, 
+    account_id:1,
+    lesson_id:1
     );
 Schedule.create(
     title:"Available", 
     start:"2020-02-16T09:00", 
     end:"2020-02-16T18:00", 
-    trainer_id:"2", 
-    account_id:"1"
+    trainer_id:2, 
+    account_id:1,
+    lesson_id:2
     );
     
 
