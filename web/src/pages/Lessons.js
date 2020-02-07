@@ -22,7 +22,7 @@ class Lessons extends Component {
   handlePrevious = (e) => {
     e.preventDefault();
     const newPage = Math.max(0, this.state.page - 1);
-    Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
+    Axios.get("/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
         page: newPage,
@@ -37,11 +37,9 @@ class Lessons extends Component {
 
   handleNext = (e) => {
     e.preventDefault();
-    console.log(">>>>> handleNext");
-
     const newPage = Math.min(this.state.count, this.state.page + 1);
     console.log("New page: " + newPage);
-    Axios.get("/api/lessons", { params: { page: newPage } }).then((result) => {
+    Axios.get("/lessons", { params: { page: newPage } }).then((result) => {
       this.setState({
         count: result.data.count,
         page: newPage,
@@ -50,9 +48,7 @@ class Lessons extends Component {
     });
   };
   componentDidMount() {
-    console.log(">>>>> componentDidMount");
-
-    Axios.get("/api/lessons").then((result) => {
+    Axios.get("/lessons").then((result) => {
       this.setState({
         lessons: result.data.lessons,
         page: 0,

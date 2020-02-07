@@ -15,7 +15,7 @@ class SingleLesson extends Component {
   };
 
   componentDidMount() {
-    Axios.get(`/api/lessons/${this.props.match.params.id}`).then((result) => {
+    Axios.get(`/lessons/${this.props.match.params.id}`).then((result) => {
       console.log("result:", result);
       this.setState({ lesson: result.data.lesson });
     });
