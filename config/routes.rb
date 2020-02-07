@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :accounts
 
   post 'authenticate', to: 'authentication#authenticate'
+  post 'booking/:lesson_id', to: 'users#create_booking'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get '*path', to: "application#fallback_index_html", constraints: ->(request) do
     puts "Falling back to index.html..."
