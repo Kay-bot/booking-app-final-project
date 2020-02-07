@@ -3,6 +3,9 @@ class Schedule < ApplicationRecord
     # Tenant Of
   belongs_to :account, optional: true
   accepts_nested_attributes_for :account
+
+  belongs_to :lesson, optional: true
+  accepts_nested_attributes_for :account
   
   belongs_to :trainer, :inverse_of => :schedules
   accepts_nested_attributes_for :trainer
