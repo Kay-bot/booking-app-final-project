@@ -28,7 +28,7 @@ function Cart() {
       </SectionWrapper>
       <SectionWrapper>
         <CartHeader>
-          <H4>Confirm Booking</H4>
+          <H4>Payment</H4>
         </CartHeader>
         <Row>Row 1</Row>
         <Row>Row 2</Row>
