@@ -1,6 +1,6 @@
 class UsersController < ApiController
 
-  before_action :authorize_request, except: %i[create index, get_by_id]
+  before_action :authenticate_request, except: %i[create index, get_by_id]
 
   attr_reader :current_user
    
