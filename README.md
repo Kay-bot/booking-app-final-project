@@ -16,10 +16,12 @@ Could have
 
 ---
 
-Deploy: https://dashboard.heroku.com/apps/booking-app-final-project
+Deploy: https://booking-app-final-project.herokuapp.com/
 
+Stacks
 Fronend: built on React
 Backend: built on rails
+Database: Postgres
 
 References:
 Backend project structure, read:
