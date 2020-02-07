@@ -13,13 +13,25 @@ function Cart() {
   return (
     <Wrapper>
       <SectionWrapper>
-        <CartHeader>Your Class</CartHeader>
+        <CartHeader>
+          <H4>Your Class</H4>
+        </CartHeader>
+        <Row>Row 1</Row>
+        <Row>Row 2</Row>
       </SectionWrapper>
       <SectionWrapper>
-        <CartHeader>Your Details</CartHeader>
+        <CartHeader>
+          <H4>Your Details</H4>
+        </CartHeader>
+        <Row>Row 1</Row>
+        <Row>Row 2</Row>
       </SectionWrapper>
       <SectionWrapper>
-        <CartHeader>Confirm Booking</CartHeader>
+        <CartHeader>
+          <H4>Confirm Booking</H4>
+        </CartHeader>
+        <Row>Row 1</Row>
+        <Row>Row 2</Row>
       </SectionWrapper>
     </Wrapper>
   );

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.section`
   padding: 4em;
-  margin-top: 50px;
+
   background: papayawhip;
   height: 100%;
   overflow-y: hidden;
@@ -41,12 +41,12 @@ const CartHeader = styled.div`
   margin-bottom: 32px;
   font-weight: 700;
   font-size: 25px;
-  text-align: center;
   padding-bottom: 18px;
   border-bottom: 1px lightgrey solid;
 `;
 
 const H4 = styled.h4`
+  text-align: center;
   line-height: 32px;
   margin-top: 10px;
   *,
@@ -55,6 +55,7 @@ const H4 = styled.h4`
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
   }
+
   display: block;
   margin-block-start: 1.33em;
   margin-block-end: 1.33em;
