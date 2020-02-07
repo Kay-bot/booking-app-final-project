@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_07_043942) do
+ActiveRecord::Schema.define(version: 2020_02_07_123333) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2020_02_07_043942) do
     t.text "cancellation_reason"
     t.boolean "refunded"
     t.string "client_id"
-    t.string "integer"
     t.integer "trainer_id"
     t.integer "schedule_id"
     t.integer "lesson_id"

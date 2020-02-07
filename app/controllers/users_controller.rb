@@ -76,7 +76,7 @@ class UsersController < ApiController
     @client = Client.new
     @booking = Booking.new
     @lesson_payment = LessonPayment.new
-    @schedules = Schedule.where('start >= ? and start <=  ?', Date.today + 1.day, Date.today + 2.weeks).where(title: 'Available').order('start ASC').all
+    @schedules = Schedule.where('start >= ? and start <=  ?', Date.today + 1.day, Date.today + 3.days).where(title: 'Available').order('start ASC').all
   end
 
   def create_booking
