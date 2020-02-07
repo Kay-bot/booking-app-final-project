@@ -10,6 +10,7 @@ import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import SingleLesson from "./pages/SingleLesson";
+import Cart from "./pages/Cart";
 // import Error from "./pages/Error";
 
 import Navbar from "./navbar/Navbar";
@@ -43,6 +44,7 @@ function Routes(props) {
           </Route>
           <Route exact path="/lessons" component={Lessons} />
           <Route exact path="/lessons/:id" component={SingleLesson} />
+          <Route exact path="/cart" component={Cart} />
           <Route exact path="/schedules" component={Schedules} />
           <Route exact path="/add-lessons" component={LessonForm} />
           <Route exact path="/login" component={Login} />
