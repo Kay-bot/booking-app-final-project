@@ -28,8 +28,6 @@ const Navbar = (props) => {
           <Brand />
           <NavLinks style={linkAnimation}>
             <Link to="/lessons">Lessons</Link>
-            <Link to="/schedules">Schedules</Link>
-            <Link to="/add-lessons">Add Lessons</Link>
             <Link to="/login">Sign In</Link>
             <Link to="/Register">Register</Link>
             <Link to={`/user`}>Welcome back</Link>

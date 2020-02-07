@@ -24,17 +24,6 @@ const CollapseMenu = (props) => {
               Lessons
             </Link>
           </li>
-
-          <li>
-            <Link to="/schedules" onClick={props.handleNavbar}>
-              Schedules
-            </Link>
-          </li>
-          <li>
-            <Link to="/add-lessons" onClick={props.handleNavbar}>
-              Add Lessons
-            </Link>
-          </li>
           <li>
             <Link to="/login" onClick={props.handleNavbar}>
               Sign In
