@@ -30,7 +30,7 @@ export const LessonCardContainer = styled.div`
 
 export const LessonImage = styled.img`
   width: 100%;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
 `;
 export const LessonDetailsContainer = styled.div`

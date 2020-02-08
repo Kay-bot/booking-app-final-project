@@ -74,12 +74,13 @@ class Lessons extends Component {
       </LessonCardContainer>
     ));
     const box = {
-      position: "reletive"
+      position: "reletive",
+      padding: "80px"
     };
     const box2 = {
       margin: "0",
       position: "absolute",
-      top: "90%",
+      top: "80%",
       left: "50%",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)"
@@ -87,7 +88,7 @@ class Lessons extends Component {
     return (
       <div style={box}>
         <StyledHero>
-          <h1>Upcoming Lessons in 2020</h1>
+          <h1>Fun workshops and classes Sydney</h1>
         </StyledHero>
 
         <LessonContainer>{lessonList}</LessonContainer>
@@ -112,6 +113,10 @@ class Lessons extends Component {
             <div>Next</div>
           )}
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }

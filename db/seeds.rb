@@ -62,7 +62,7 @@ maeve = Trainer.create(
     account_id: 1
 )
 Lesson.create(
-    url: 'https://imgur.com/RB8GlGk', 
+    url: 'https://classbento.com.au/images/class/basket-weaving-class-at-bondi-beach-portrait-big.jpg?1580588732%201600w', 
     title: 'Basket Weaving Class',
     duration: "2.5",
     cost: 165,
@@ -73,96 +73,104 @@ Lesson.create(
     );
 
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Beef Jerky',
+    url: 'https://classbento.com.au/images/class/beginners-kintsugi-workshop-sydney-portrait-big.jpg?1576259790%201600w', 
+    title: 'Kintsugi Workshop',
     duration: 1-2,
-    cost:100,
+    cost:120,
     category: '',
     language: 'English',
     level: 'Advance',
-    description: 'You will learn how to make Beef Jerky'
+    description: 'You will learn about the wonderful art of Kintsugi, the ancient Japanese art of mending broken pottery using lacquer with gold, platinum or silver, which dates back to 15th century Japan. The philosophy of Kintsugi is that an object is sometimes broken; however, this is part of its life, and rather than throw it away it can be repaired and the have its cracks remain to show its history and story.'
     );
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Green Curry',
-    duration: 1,
-    cost:20,
+    url: 'https://classbento.com.au/images/class/shake-cocktails-with-australian-native-plants-portrait-big.jpg?1578488955%201600w', 
+    title: 'Shake Cocktails with Australian Native Plants',
+    duration: 2,
+    cost:85,
     category: '',
     language: 'English',
     level: 'Beginner',
-    description: 'You will learn how to make Green Curry'
+    description: 'Like most good things, the key to the perfect cocktail is finding balance. Feel that tipping point, tasting seasonal, sophisticated tipples, shaken with bespoke handcrafted ingredients. Inspired by the native forageables from around the city, abundant flavours that we need to champion, along with tastes from other nations of Australia.'
     );
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Pad Thai',
-    duration: 1-2,
+    url: 'https://classbento.com.au/images/class/pasta-lovers-masterclass-valentines-edition-portrait-big.jpg?1576259801%201600w', 
+    title: 'Pasta Lovers Masterclass',
+    duration: 3,
     cost:50,
     category: '',
     language: 'English',
     level: 'Intermediate',
-    description: 'You will learn how to make Pad Thai'
+    description: 'Working in pairs over three hours, we will teach you our signature pasta dough recipe and give you all the tips and tricks for pasta shapes and delicious filled ravioli that will most definitely have you feeling love at first bite.'
     );
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Basil Stirfry',
-    duration: 1,
+    url: 'https://classbento.com.au/images/class/paint-and-sip-class-tuscan-door-portrait-big.jpg?1576259835%201600w', 
+    title: 'Paint and Sip Class: Tuscan Door',
+    duration: 2,
     cost:50,
     category: '',
     language: 'English',
     level: 'Beginner',
-    description: 'You will learn how to make Basil Stirfry'
+    description: 'This is a fun sip and paint session, where you will be painting the Tuscan way while having a drink.
+
+    This class is perfect for beginners! Join us to unwind, sip on your favourite beverage and paint while our professional artist guides you from start to finish to paint an interpretation of Tuscan Way. You supply the wine or your favourite beverage, and we’ll provide all the materials including the glassware, small plate, canvas, paints, easel, apron and even the soulful tunes. You are welcome to bring bites and snacks.'
     );
 
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Basil Stirfry',
-    duration: 1,
-    cost:50,
+    url: 'https://classbento.com.au/images/class/beginner-dslr-hybrid-photography-course-sydney-portrait-big.jpg?1576259789%201600w', 
+    title: 'Beginner DSLR / Hybrid Photography Course',
+    duration: 3,
+    cost:99,
     category: '',
     language: 'English',
     level: 'Beginner',
-    description: 'You will learn how to make Basil Stirfry'
-    );
-Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Basil Stirfry',
-    duration: 1,
-    cost:50,
-    category: '',
-    language: 'English',
-    level: 'Beginner',
-    description: 'You will learn how to make Basil Stirfry'
-    );
-Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Basil Stirfry',
-    duration: 1,
-    cost:50,
-    category: '',
-    language: 'English',
-    level: 'Beginner',
-    description: 'You will learn how to make Basil Stirfry'
-    );
-Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Papaya Salad',
-    duration: 1,
-    cost:50,
-    category: '',
-    language: 'Thai',
-    level: 'Intermediat',
-    description: 'You will learn how to make Papaya Salad'
-    );
+    description: 'This is a fun and creative hands-on photography learning experience, in the scenic and iconic surrounds of The Rocks and Sydney Harbour. Perfect for beginners.
 
+    You will learn all about photo composition, controlling ISO, aperture & shutter speed, and put theory into practice in this hands-on photography class. Learn all that your camera manual mode has to offer!'
+    );
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Beef Jerky',
-    duration: 1-2,
+    url: 'https://classbento.com.au/images/class/makmak-raspberry-macaron-making-class-portrait-big.jpg?1576259813%201600w', 
+    title: 'Makmak Raspberry Macaron Making Class',
+    duration: 2,
     cost:100,
     category: '',
     language: 'English',
+    level: 'Beginner',
+    description: 'Learn the fine art of macaron-making under the guidance of Sydney’s best: MakMak macarons were voted recently as the best in Sydney, beating esteemed competitors like Laduree and Zumbo. Find out what gives MakMak the edge.'
+    );
+Lesson.create(
+    url: 'https://classbento.com.au/images/class/herbal-tea-workshop-tasting-and-preparation-sydney-portrait-big.jpg?1576259805%201600w', 
+    title: 'Herbal Tea Workshop',
+    duration: 2,
+    cost:50,
+    category: '',
+    language: 'English',
+    level: 'Beginner',
+    description: 'Chinese people have a long history of tea drinking and amazing tea culture. In the workshop, we will demonstrate the tea ceremony and serve TaiWan high mountain tea.
+
+    You will also learn the knowledge of traditional Chinese herbal tea and prepare your own.'
+    );
+Lesson.create(
+    url: 'https://classbento.com.au/images/class/scented-soy-candle-making-workshop-sydney-0-portrait-big.jpg?1576259826%201600w', 
+    title: 'Scented Soy Candle Making Workshop',
+    duration: 2,
+    cost:120,
+    category: '',
+    language: 'English',
+    level: 'Intermediat',
+    description: 'Learn how to make your own candles using C3 Soy Wax, the wax used by professional makers. This workshop will take you through the basics of making your own candles, an introduction to tools and materials, teaching you pouring techniques, and how to create scented candles.'
+    );
+
+Lesson.create(
+    url: 'https://classbento.com.au/images/class/kombucha-making-workshop-portrait-big.jpg?1576259811%201600w', 
+    title: 'Kombucha Making Workshop',
+    duration: 1,
+    cost:65,
+    category: '',
+    language: 'English',
     level: 'Advance',
-    description: 'You will learn how to make Beef Jerky'
+    description: 'Learn about the culture of Kombucha, microbes, the fermentation process, how to start up your own SCOBY home.
+
+    Students will leave with a bottle of Kombucha that will ferment, carbonate over a few days after the class; and also a scoby/mother (kombucha starter) to get a colony of microbes thriving at home so you can love your gut and feed the microbiomes of you and your friends.'
     );
 
 Schedule.create(
@@ -187,4 +195,4 @@ puts "seeding Accounts database created #{Account.all.length}"
 puts "seeding Users database created #{User.all.length}"
 puts "seeding Trainers database created #{Trainer.all.length}"
 puts "seeding Lessons database created #{Lesson.all.length}"
-puts "seeding Schules database created #{Schedule.all.length}"
+puts "seeding Schedules database created #{Schedule.all.length}"
