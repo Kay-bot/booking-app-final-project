@@ -74,7 +74,6 @@ class Lessons extends Component {
       </LessonCardContainer>
     ));
     const box = {
-      padding: "100px",
       position: "reletive"
     };
     const box2 = {

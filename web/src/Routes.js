@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import "./styles/App.css";
-import HomeHero from "./styles/HomeHero";
+import React, { Component } from "react";
+import axios from "axios";
 
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
 
 import Lessons from "./pages/Lessons";
@@ -17,44 +16,137 @@ import Navbar from "./navbar/Navbar";
 
 import Schedules from "./components/Schedules";
 import LessonForm from "./forms/LessonForm";
-import { AuthContext } from "./context/auth";
 
-function Routes(props) {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const [authTokens, setAuthTokens] = useState();
+class Routes extends Component {
+  constructor(props) {
+    super(props);
+    let auth = sessionStorage.getItem("auth");
+    this.state = {
+      navbarOpen: false,
+      user: {
+        isLoggedIn: !!auth ? true : false,
+        currentUser: null,
+        currentUserId: null,
+        loginErrorMessage: ""
+      }
+    };
+  }
 
-  const handleNavbar = () => {
-    setNavbarOpen(!navbarOpen);
+  // componentDidMount() {
+  //   this.getUser();
+  // }
+
+  getUser = () => {
+    let auth = sessionStorage.getItem("auth");
+    console.log(auth);
+    if (!auth) return;
+    axios
+      .get(`/users/${auth.user_id}`, {
+        headers: { Authorization: auth.token }
+      })
+      .then((response) => {
+        this.setState({
+          currentUser: response.data,
+          currentUserId: auth.userId,
+          isLoggedIn: true
+        });
+        return <Redirect to="/" />;
+      });
   };
 
-  const setTokens = (data) => {
-    localStorage.setItem("tokens", JSON.stringify(data));
-    setAuthTokens(data);
+  handleLogin = (email, password) => {
+    axios
+      .post(`/login`, {
+        email: email,
+        password: password
+      })
+      .then((response) => {
+        console.log("help me please", response);
+        sessionStorage.setItem(
+          "auth",
+          JSON.stringify(response.data.auth_token)
+        );
+        this.getUser();
+      })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          loginErrorMessage: "Fail to login. Pleaes try again!"
+        });
+        return <Redirect to="/register" />;
+      });
   };
 
-  return (
-    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
+  handleNavbar = () => {
+    this.setState({ navbarOpen: !this.state.navbarOpen });
+  };
+
+  handleLogout = () => {
+    sessionStorage.setItem("auth", null);
+    this.setState({ currentUser: null, isLoggedIn: false });
+  };
+  render() {
+    const userDetails = {
+      isLoggedIn: this.state.isLoggedIn,
+      loginErrorMessage: this.state.loginErrorMessage,
+      currentUser: this.state.currentUser,
+      currentUserId: this.state.currentUserId,
+
+      logout: () => this.handleLogout(),
+      login: (email, password) => this.handleLogin(email, password)
+    };
+
+    return (
       <BrowserRouter>
-        <Navbar navbarState={navbarOpen} handleNavbar={handleNavbar} />
+        <Navbar
+          user={userDetails}
+          navbarState={this.state.navbarOpen}
+          handleNavbar={this.handleNavbar}
+        />
         <Switch>
-          <Route exact path="/">
-            <HomeHero>
-              <h2>Welcome to the class room!</h2>
-            </HomeHero>
-          </Route>
-          <Route exact path="/lessons" component={Lessons} />
-          <Route exact path="/lessons/:id" component={SingleLesson} />
-          <Route exact path="/cart" component={Cart} />
-          <Route exact path="/schedules" component={Schedules} />
-          <Route exact path="/add-lessons" component={LessonForm} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/Register" component={Register} />
+          <Route exact path="/" component={Lessons} user={userDetails} />
+          <Route exact path="/lessons" component={Lessons} user={userDetails} />
+          <Route
+            exact
+            path="/lessons/:id"
+            component={SingleLesson}
+            user={userDetails}
+          />
+          <Route exact path="/cart" component={Cart} user={userDetails} />
+          <Route
+            exact
+            path="/schedules"
+            component={Schedules}
+            user={userDetails}
+          />
+          <Route
+            exact
+            path="/add-lessons"
+            component={LessonForm}
+            user={userDetails}
+          />
+          <Route
+            exact
+            path="/login"
+            component={() => <Login user={userDetails} />}
+          />
+          <Route
+            exact
+            path="/Register"
+            component={Register}
+            user={userDetails}
+          />
           {/* <Route component={Error} /> */}
-          <PrivateRoute exact path="/admin" component={Admin} />
+          <PrivateRoute
+            exact
+            path="/admin"
+            component={Admin}
+            user={userDetails}
+          />
         </Switch>
       </BrowserRouter>
-    </AuthContext.Provider>
-  );
+    );
+  }
 }
 
 export default Routes;
