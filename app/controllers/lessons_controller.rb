@@ -1,6 +1,6 @@
 class LessonsController < ApiController
 
-  LESSONS_PER_PAGE = 3
+  LESSONS_PER_PAGE = 6
 
   def index
     @lesson_count = Lesson.count.to_i

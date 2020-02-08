@@ -173,6 +173,30 @@ Lesson.create(
     Students will leave with a bottle of Kombucha that will ferment, carbonate over a few days after the class; and also a scoby/mother (kombucha starter) to get a colony of microbes thriving at home so you can love your gut and feed the microbiomes of you and your friends.'
     );
 
+Lesson.create(
+    url: 'https://classbento.com.au/images/class/cocktail-making-class-and-all-you-can-eat-pizza-sydney-portrait-big.jpg?1576259795%201600w', 
+    title: 'Cocktail Making Class',
+    duration: 1.5,
+    cost:99,
+    category: '',
+    language: 'English',
+    level: 'Advance',
+    description: 'Stir, shake and twist to the top of your cocktail making game in this Sydney cocktail making class. And to make sure you do not leave hungry there will be a luscious All-You-Can-Eat pizza spread!'
+        );
+
+Lesson.create(
+    url: 'https://classbento.com.au/images/class/acrylic-pour-painting-class-for-valentines-day-sydney-portrait-big.jpg?1579426857%201600w', 
+    title: 'Acrylic Pour Painting Class for Valentine Day',
+    duration: 2,
+    cost:125,
+    category: '',
+    language: 'English',
+    level: 'Advance',
+    description: 'Learn acrylic pouring for beginners at this hands-on class.
+
+    Friday February 14 is Valentines Day! Acrylic Pour painting is a beautiful way for couples to share the love on Valentines Day! Expressing love; being creative together; being present in the moment; sharing art as mindfulness; quality time together; being at one; making heart paintings together to gift to each other on Valentines Day! Creating art, creating memories.'
+        );
+
 Schedule.create(
     title:"Available", 
     start:"2020-02-15T09:00", 

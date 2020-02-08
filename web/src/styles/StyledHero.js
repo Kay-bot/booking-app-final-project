@@ -8,7 +8,8 @@ const StyledHero = styled.header`
   align-items: center;
   justify-content: center;
   background-size: cover;
-  /* padding: 30px */
+  
+  padding-bottom: 30px
 `;
 
 export default StyledHero;

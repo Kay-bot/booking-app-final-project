@@ -80,7 +80,7 @@ class Lessons extends Component {
     const box2 = {
       margin: "0",
       position: "absolute",
-      top: "80%",
+      top: "100%",
       left: "50%",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)"
