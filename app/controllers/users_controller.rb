@@ -1,16 +1,17 @@
 class UsersController < ApiController
 
-  skip_before_action :verify_authenticity_token
-  before_action :set_lesson, only: [:new]
-  before_action :authorize_request, except: %i[create, index, get_id]
-  
   @@JWT_SECRET_KEY = 'to something else'
 
-  # attr_reader :current_user
+  before_action :set_lesson, only: [:new]
+  before_action :authorize_request, except: %i[create, index, get_id, login]
 
   def index
     @users = User.all
     render json: @users, status: :ok
+  end
+
+  def show
+    render json: @user
   end
   
   def create
@@ -79,30 +80,40 @@ class UsersController < ApiController
     end
 
     if !user.authenticate(params[:password])
+      
       render json: { error: "unauthorized" }, status: :unauthorized
       return
     end
 
     token = jwt_encode({ user_id: user.id }, 24.hours.from_now)
+
     render json: { token: token, exp: 24, username: user.email, userId: user.id },
            status: :ok
 end
 
 def authorize_request
   header = request.headers['Authorization']
-
-  # The Authorization header is in the format of "Bearer <jwt>"
-  # we split by space to get the token
-  token = header.split(' ')[1]      
-  begin         
+    
+    token = header.split(' ')[1]      
+    begin         
       @user_jwt = jwt_decode(token)
-      @current_user = User.find(@user_jwt[:user_id])
+      @current_user = User.find(@user_jwt[:userId])
       rescue ActiveRecord::RecordNotFound => e
-          render json: { errors: e.message }, status: :unauthorized
+        render json: { errors: e.message }, status: :unauthorized
       rescue JWT::DecodeError => e
-          render json: { errors: e.message }, status: :unauthorized
+        render json: { errors: e.message }, status: :unauthorized
+      end
   end
-end
+
+  def jwt_encode(payload, exp = 24.hours.from_now)
+      payload[:exp] = exp.to_i
+      JWT.encode(payload, @@JWT_SECRET_KEY)
+  end
+    
+  def jwt_decode(token)
+      decoded = JWT.decode(token, @@JWT_SECRET_KEY)[0]
+      HashWithIndifferentAccess.new decoded
+  end
    ##------Booking Logic------##----------##---------------------###
 
   def new
@@ -187,15 +198,5 @@ end
       @lesson_payment.account_id = @user.account_id
       @lesson_payment.save
     end
-
-  protected 
-    def jwt_encode(payload, exp = 24.hours.from_now)
-      payload[:exp] = exp.to_i
-      JWT.encode(payload, @@JWT_SECRET_KEY)
-    end
   
-    def jwt_decode(token)
-      decoded = JWT.decode(token, @@JWT_SECRET_KEY)[0]
-      HashWithIndifferentAccess.new decoded
-    end
 end

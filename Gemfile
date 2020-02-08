@@ -51,4 +51,3 @@ gem "aws-sdk-s3", require: false
 
 gem 'image_processing'
 
-gem "simple_command", "~> 0.1.0"

@@ -37,11 +37,12 @@ class Routes extends Component {
   // }
 
   getUser = () => {
-    let auth = sessionStorage.getItem("auth");
+    debugger;
+    let auth = JSON.parse(sessionStorage.getItem("auth"));
     console.log(auth);
     if (!auth) return;
     axios
-      .get(`/users/${auth.user_id}`, {
+      .get(`/users/${auth.userId}`, {
         headers: { Authorization: auth.token }
       })
       .then((response) => {
@@ -62,10 +63,7 @@ class Routes extends Component {
       })
       .then((response) => {
         console.log("help me please", response);
-        sessionStorage.setItem(
-          "auth",
-          JSON.stringify(response.data.auth_token)
-        );
+        sessionStorage.setItem("auth", JSON.stringify(response.data));
         this.getUser();
       })
       .catch((err) => {

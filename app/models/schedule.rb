@@ -15,5 +15,4 @@ class Schedule < ApplicationRecord
   
   validates :start, uniqueness: { scope: :trainer_id, message: "You have already made this time available" }
   
-  
 end 
