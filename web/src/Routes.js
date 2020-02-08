@@ -32,9 +32,9 @@ class Routes extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.getUser();
-  // }
+  componentDidMount() {
+    this.getUser();
+  }
 
   getUser = () => {
     debugger;
@@ -62,12 +62,10 @@ class Routes extends Component {
         password: password
       })
       .then((response) => {
-        console.log("help me please", response);
         sessionStorage.setItem("auth", JSON.stringify(response.data));
         this.getUser();
       })
       .catch((err) => {
-        console.log(err);
         this.setState({
           loginErrorMessage: "Fail to login. Pleaes try again!"
         });
