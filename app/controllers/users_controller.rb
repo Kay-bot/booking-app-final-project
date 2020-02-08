@@ -1,11 +1,12 @@
 class UsersController < ApiController
 
+  skip_before_action :verify_authenticity_token
   before_action :set_lesson, only: [:new]
-  before_action :authenticate_request, except: %i[create, index, get_id]
+  before_action :authorize_request, except: %i[create, index, get_id]
   
+  @@JWT_SECRET_KEY = 'to something else'
 
-  attr_reader :current_user
-   
+  # attr_reader :current_user
 
   def index
     @users = User.all
@@ -67,6 +68,41 @@ class UsersController < ApiController
     end
   end
 
+  def login
+    # @current_user = AuthorizeApiRequest.call(request.headers).result
+    # # render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+    user = User.find_by_email(params[:email])
+
+    if !user
+      render json: { error: "unauthorized" }, status: :unauthorized
+      return
+    end
+
+    if !user.authenticate(params[:password])
+      render json: { error: "unauthorized" }, status: :unauthorized
+      return
+    end
+
+    token = jwt_encode({ user_id: user.id }, 24.hours.from_now)
+    render json: { token: token, exp: 24, username: user.email, userId: user.id },
+           status: :ok
+end
+
+def authorize_request
+  header = request.headers['Authorization']
+
+  # The Authorization header is in the format of "Bearer <jwt>"
+  # we split by space to get the token
+  token = header.split(' ')[1]      
+  begin         
+      @user_jwt = jwt_decode(token)
+      @current_user = User.find(@user_jwt[:user_id])
+      rescue ActiveRecord::RecordNotFound => e
+          render json: { errors: e.message }, status: :unauthorized
+      rescue JWT::DecodeError => e
+          render json: { errors: e.message }, status: :unauthorized
+  end
+end
    ##------Booking Logic------##----------##---------------------###
 
   def new
@@ -99,12 +135,8 @@ class UsersController < ApiController
      
   end
       ##------Booking Logic------##----------##---------------------###
-  private
 
-    def authenticate_request
-      @current_user = AuthorizeApiRequest.call(request.headers).result
-      # render json: { error: 'Not Authorized' }, status: 401 unless @current_user
-    end
+  private
 
     def set_lesson
       @lesson = Lesson.find(params[:lesson_id])
@@ -156,4 +188,14 @@ class UsersController < ApiController
       @lesson_payment.save
     end
 
+  protected 
+    def jwt_encode(payload, exp = 24.hours.from_now)
+      payload[:exp] = exp.to_i
+      JWT.encode(payload, @@JWT_SECRET_KEY)
+    end
+  
+    def jwt_decode(token)
+      decoded = JWT.decode(token, @@JWT_SECRET_KEY)[0]
+      HashWithIndifferentAccess.new decoded
+    end
 end

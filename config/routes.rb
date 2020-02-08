@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users
   resources :accounts
 
-  post 'authenticate', to: 'authentication#authenticate'
+  post 'login', to: 'users#login'
   post 'booking/:lesson_id', to: 'users#create_booking'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
