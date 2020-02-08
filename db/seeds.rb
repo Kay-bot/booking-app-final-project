@@ -62,14 +62,14 @@ maeve = Trainer.create(
     account_id: 1
 )
 Lesson.create(
-    url: 'https://via.placeholder.com/300/D5A4A8 ?Text=TestOnly', 
-    title: 'Make Papaya Salad',
-    duration: 1,
-    cost:50,
+    url: 'https://imgur.com/RB8GlGk', 
+    title: 'Basket Weaving Class',
+    duration: "2.5",
+    cost: 165,
     category: '',
-    language: 'Thai',
-    level: 'Intermediat',
-    description: 'You will learn how to make Papaya Salad'
+    language: 'English',
+    level: 'Biginner',
+    description: 'In this two and a half hour workshop, with guest fibre artist Robyn Morris, we will work with a Bangalow palm inflorescence, which is the seed carrier of our Australian native tree. The inflorescence is freshly fallen and once prepared is deliciously soft and supple for weaving.'
     );
 
 Lesson.create(

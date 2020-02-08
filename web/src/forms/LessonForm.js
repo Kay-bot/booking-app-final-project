@@ -29,7 +29,7 @@ class LessonForm extends Component {
     console.log(this.state);
     this.setState({ isSubmitting: true });
 
-    const res = await fetch(`http://localhost:3001/api/lessons`, {
+    const res = await fetch(`http://localhost:3001/lessons`, {
       method: "POST",
       body: JSON.stringify(this.state.values),
       headers: {
