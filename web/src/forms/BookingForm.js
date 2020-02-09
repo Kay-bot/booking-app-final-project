@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { Redirect, Link } from "react-router-dom";
-import axios from "axios";
 import {
   BookingWrapper,
   InnerContainer,
@@ -13,7 +12,8 @@ import styled from "styled-components";
 
 class BookingForm extends Component {
   state = {
-    schedules: []
+    schedules: [],
+    selectedOption: null
   };
 
   componentDidMount() {
@@ -24,33 +24,27 @@ class BookingForm extends Component {
       });
   }
 
-  handleChange = (schedules) => {
-    this.setState({ schedules }, () =>
-      console.log(`Option selected:`, this.state.schedules)
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption }, () =>
+      console.log(`Option selected:`, this.state.selectedOption)
     );
   };
 
-  handleClick = () => {
-    console.log("I'm clicked");
-    //Intend to redirect to /cart
-  };
-
   render() {
-    const scheduleList = this.state.schedules.map((schedule) => (
-      <li>
-        {schedule.date}, {schedule.time}
-      </li>
-    ));
+    const scheduleList = this.state.schedules.map((item) => ({
+      value: item.date + item.time,
+      label: item.date + item.time
+    }));
+
     return (
       <BookingWrapper>
         <InnerContainer>
           <Subheader>Booking button and schedule will be here!</Subheader>
           <FormContain>
-            <div>{scheduleList}</div>
             <Bform>
               <InputDiv>
                 <Select
-                  value={this.state.schedules}
+                  value={this.state.selectedOption}
                   onChange={this.handleChange}
                   options={scheduleList}
                 />
