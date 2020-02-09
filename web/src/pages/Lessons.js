@@ -10,7 +10,6 @@ import {
 } from "../styles/LessonHomeStyle";
 import "../styles/pagination.css";
 import Axios from "axios";
-import styled from "styled-components";
 
 class Lessons extends Component {
   state = {
@@ -33,7 +32,7 @@ class Lessons extends Component {
 
   currentPage = () => this.state.page;
 
-  totalPages = () => Math.floor(this.state.count / 3);
+  totalPages = () => Math.floor(this.state.count / 6);
 
   handleNext = (e) => {
     e.preventDefault();
