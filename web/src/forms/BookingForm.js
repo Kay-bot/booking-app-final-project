@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { Redirect, Link } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 import {
   BookingWrapper,
   InnerContainer,
@@ -11,29 +11,22 @@ import {
 } from "../styles/SingLessonStyled";
 import styled from "styled-components";
 
-const options = [
-  {
-    value: "Mon 10 Feb, 3pm-5pm, (Potts Point, Sydney)",
-    label: "Mon 10 Feb, 3pm-5pm, (Potts Point, Sydney)"
-  },
-  {
-    value: "Tue 11 Feb, 3pm-5pm, (Potts Point, Sydney)",
-    label: "Tue 11 Feb, 3pm-5pm, (Potts Point, Sydney)"
-  },
-  {
-    value: "Wed 11 Feb, 3pm-5pm, (Potts Point, Sydney)",
-    label: "Wed 11 Feb, 3pm-5pm, (Potts Point, Sydney)"
-  }
-];
-
 class BookingForm extends Component {
   state = {
-    selectedOption: null
+    schedules: []
   };
 
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
+  componentDidMount() {
+    fetch("/schedules")
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ schedules: json });
+      });
+  }
+
+  handleChange = (schedules) => {
+    this.setState({ schedules }, () =>
+      console.log(`Option selected:`, this.state.schedules)
     );
   };
 
@@ -43,18 +36,23 @@ class BookingForm extends Component {
   };
 
   render() {
-    const { selectedOption } = this.state;
+    const scheduleList = this.state.schedules.map((schedule) => (
+      <li>
+        {schedule.date}, {schedule.time}
+      </li>
+    ));
     return (
       <BookingWrapper>
         <InnerContainer>
           <Subheader>Booking button and schedule will be here!</Subheader>
           <FormContain>
+            <div>{scheduleList}</div>
             <Bform>
               <InputDiv>
                 <Select
-                  value={selectedOption}
+                  value={this.state.schedules}
                   onChange={this.handleChange}
-                  options={options}
+                  options={scheduleList}
                 />
               </InputDiv>
               <BtnDiv>

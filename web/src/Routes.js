@@ -111,7 +111,7 @@ class Routes extends Component {
           />
           <Route
             exact
-            path="/Checkout"
+            path="/checkout"
             component={Checkout}
             user={userDetails}
           />
@@ -135,7 +135,7 @@ class Routes extends Component {
           />
           <Route
             exact
-            path="/Register"
+            path="/register"
             component={Register}
             user={userDetails}
           />
