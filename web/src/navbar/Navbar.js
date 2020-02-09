@@ -27,10 +27,8 @@ const Navbar = (props) => {
         <FlexContainer>
           <Brand />
           <NavLinks style={linkAnimation}>
-            <Link to="/lessons">Lessons</Link>
-            <Link to="/login">Sign In</Link>
-            <Link to="/Register">Register</Link>
-            <Link to={`/user`}>Welcome back</Link>
+            <Link to="/cart">Cart</Link>
+            <Link to="/login">Login</Link>
           </NavLinks>
           <Wrapper>
             <Menu
