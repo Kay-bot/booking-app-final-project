@@ -123,7 +123,7 @@ def authorize_request
     @client = Client.new
     @booking = Booking.new
     @lesson_payment = LessonPayment.new
-    @schedules = Schedule.where('start >= ? and start <=  ?', Date.today + 1.day, Date.today + 3.days).where(title: 'Available').order('start ASC').all
+    @schedules = Schedule.where(title: 'Available').order('date ASC').all
   end
 
   def create_booking
@@ -145,8 +145,7 @@ def authorize_request
         end
      
   end
-      ##------Booking Logic------##----------##---------------------###
-
+     
   private
 
     def set_lesson
@@ -182,7 +181,8 @@ def authorize_request
       @booking.save
       @schedule = Schedule.find(params[:user][:booking][:schedule_id])
       @booking.trainer_id = @schedule.trainer_id
-      @booking.start = @schedule.start
+      @booking.date = @schedule.date
+      @booking.time = @schedule.time
       @booking.refunded = 0
       @booking.save
       @schedule.title = 'Booked'
@@ -198,5 +198,7 @@ def authorize_request
       @lesson_payment.account_id = @user.account_id
       @lesson_payment.save
     end
+
+     ##------Booking Logic------##----------##---------------------###
   
 end

@@ -199,21 +199,44 @@ Lesson.create(
 
 Schedule.create(
     title:"Available", 
-    start:"2020-02-15T09:00", 
-    end:"2020-02-15T18:00", 
-    trainer_id:1, 
+    date: "Mon, 17 Feb", 
+    time: "9am-12pm", 
+    trainer_id:3, 
     account_id:1,
     lesson_id:1
-    );
+);
 Schedule.create(
     title:"Available", 
-    start:"2020-02-16T09:00", 
-    end:"2020-02-16T18:00", 
-    trainer_id:2, 
+    date: "Tue, 18 Feb", 
+    time: "9am-12pm", 
+    trainer_id:3,  
     account_id:1,
-    lesson_id:2
-    );
-    
+    lesson_id:1
+);
+Schedule.create(
+    title:"Available", 
+    date: "Wed, 19 Feb", 
+    time: "9am-12pm", 
+    trainer_id:3, 
+    account_id:1,
+    lesson_id:1
+);
+Schedule.create(
+    title:"Available", 
+    date: "Thur, 20 Feb", 
+    time: "9am-12pm", 
+    trainer_id:3, 
+    account_id:1,
+    lesson_id:1
+);
+Schedule.create(
+    title:"Available", 
+    date: "Fri, 20 Feb", 
+    time: "9am-12pm",         
+    trainer_id:3, 
+    account_id:1,
+    lesson_id:1
+);  
 
 puts "seeding Accounts database created #{Account.all.length}"
 puts "seeding Users database created #{User.all.length}"

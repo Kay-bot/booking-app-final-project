@@ -1,8 +1,10 @@
 class Lesson < ApplicationRecord
     
-    has_many :trainers, :through => :bookings
+    belongs_to :trainer, optional: true
+    accepts_nested_attributes_for :trainer
 
-    has_many :schedules
+    has_many :schedules, :inverse_of => :trainer
+    accepts_nested_attributes_for :schedules
   
     has_many :clients, :through => :bookings
     
