@@ -7,9 +7,10 @@ import PrivateRoute from "./components/PrivateRoute";
 import Lessons from "./pages/Lessons";
 import Admin from "./pages/Admin";
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import Register from "./components/Register";
 import SingleLesson from "./pages/SingleLesson";
-import Cart from "./pages/Cart";
+import Checkout from "./pages/Checkout";
+import Cart from "./components/Cart";
 // import Error from "./pages/Error";
 
 import Navbar from "./navbar/Navbar";
@@ -108,7 +109,13 @@ class Routes extends Component {
             component={SingleLesson}
             user={userDetails}
           />
-          <Route exact path="/cart" component={Cart} user={userDetails} />
+          <Route
+            exact
+            path="/Checkout"
+            component={Checkout}
+            user={userDetails}
+          />
+          <Route exact path="/Cart" component={Cart} user={userDetails} />
           <Route
             exact
             path="/schedules"

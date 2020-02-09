@@ -8,7 +8,7 @@ import {
   Row
 } from "../forms/CartForm";
 
-function Cart() {
+function Checkout() {
   //To right some shit here
   return (
     <Wrapper>
@@ -36,4 +36,4 @@ function Cart() {
     </Wrapper>
   );
 }
-export default Cart;
+export default Checkout;
