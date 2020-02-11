@@ -118,7 +118,7 @@ class ScheduleForm extends Component {
               Start:
             </label>
             <input
-              type="datetime-local"
+              type="text"
               name="start"
               id="start"
               value={this.state.values.start}
@@ -132,7 +132,7 @@ class ScheduleForm extends Component {
               End:
             </label>
             <input
-              type="datetime-local"
+              type="text"
               name="end"
               id="end"
               value={this.state.values.end}

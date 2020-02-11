@@ -13,7 +13,7 @@ class Schedules extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      calendarWeekends: true,
+      status: "",
       calendarEvents: [{ title: "Available", start: new Date() }]
     };
   }
@@ -35,9 +35,9 @@ class Schedules extends Component {
               }}
               plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
               ref={this.calendarComponentRef}
-              weekends={this.state.calendarWeekends}
               events={this.state.calendarEvents}
               dateClick={this.handleDateClick}
+              dateDoubleClick={this.updateClick}
             />
           </div>
           <div className={`message ${this.state.isError && "error"}`}>
@@ -47,13 +47,25 @@ class Schedules extends Component {
       </StyledHero>
     );
   }
+
+  updateClick = (arg) => {
+    window.confirm("Update your calendar" + arg.dateStr + " ?");
+    this.setState({
+      status: this.state.status.concat({
+        title: "Booked",
+        start: arg.date,
+        from: arg.time,
+        end: arg.time
+      })
+    });
+  };
   handleDateClick = (arg) => {
     if (
       window.confirm("Would you like to add an event to " + arg.dateStr + " ?")
     ) {
       this.setState({
         calendarEvents: this.state.calendarEvents.concat({
-          title: "New Event",
+          title: "Available",
           start: arg.date,
           from: arg.time,
           end: arg.time
