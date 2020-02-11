@@ -11,21 +11,21 @@ class Cart extends Component {
   componentDidMount() {
     let cart = localStorage.getItem("cart");
     if (!cart) return;
-    axios.get("/booking/:lesson_id").then((lesson) => {
+    axios.get("/booking/:lesson_id").then((lessons) => {
       let total = 0;
-      for (var i = 0; i < lesson.length; i++) {
-        total += lesson[i].price * lesson[i].qty;
+      for (var i = 0; i < lessons.length; i++) {
+        total += lessons[i].cost * lessons[i].qty;
       }
-      this.setState({ lesson, total });
+      this.setState({ lessons, total });
     });
   }
   removeFromCart = (lesson) => {
-    let lessonList = this.state.lessons.filter((item) => item.id !== lesson.id);
+    let lessons = this.state.lessons.filter((item) => item.id !== lesson.id);
     let cart = JSON.parse(localStorage.getItem("cart"));
     delete cart[lesson.id.toString()];
     localStorage.setItem("cart", JSON.stringify(cart));
     let total = this.state.total - lesson.qty * lesson.cost;
-    this.setState({ lesson, total });
+    this.setState({ lessons, total });
   };
   clearCart = () => {
     localStorage.removeItem("cart");

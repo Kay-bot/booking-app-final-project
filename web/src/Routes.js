@@ -21,7 +21,7 @@ import LessonForm from "./forms/LessonForm";
 class Routes extends Component {
   constructor(props) {
     super(props);
-    let auth = sessionStorage.getItem("auth");
+    let auth = JSON.parse(sessionStorage.getItem("auth"));
     this.state = {
       navbarOpen: false,
       user: {
@@ -38,13 +38,13 @@ class Routes extends Component {
   }
 
   getUser = () => {
-    debugger;
+    // debugger;
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     console.log(auth);
     if (!auth) return;
     axios
       .get(`/users/${auth.userId}`, {
-        headers: { Authorization: auth.token }
+        headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((response) => {
         this.setState({
@@ -109,6 +109,7 @@ class Routes extends Component {
             component={SingleLesson}
             user={userDetails}
           />
+
           <Route
             exact
             path="/checkout"

@@ -9,6 +9,7 @@ import {
   BookBtn
 } from "../styles/SingLessonStyled";
 import styled from "styled-components";
+import axios from "axios";
 
 class BookingForm extends Component {
   state = {
@@ -17,7 +18,7 @@ class BookingForm extends Component {
   };
 
   componentDidMount() {
-    fetch("/schedules")
+    fetch("/schedules") //I need to create end point where schedules belong to a lesson
       .then((response) => response.json())
       .then((json) => {
         this.setState({ schedules: json });
@@ -25,9 +26,26 @@ class BookingForm extends Component {
   }
 
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption }, () =>
-      console.log(`Option selected:`, this.state.selectedOption)
+    this.setState(
+      { selectedOption },
+      () => console.log(`Option selected:`, this.state.selectedOption)
+      // how can I add a schedule to the booking when the schedule is selected
     );
+  };
+
+  postNewBooking = (schedule) => {
+    //this function is not working yet
+    axios
+      .post(`/booking/:lesson_id`, {
+        schedule: schedule
+      })
+      .then((response) => {
+        localStorage.setItem("booking", JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return <Redirect to="/checkout" />;
   };
 
   render() {
@@ -41,19 +59,26 @@ class BookingForm extends Component {
         <InnerContainer>
           <Subheader>Booking button and schedule will be here!</Subheader>
           <FormContain>
-            <Bform>
+            <Bform onSubmit={this.postNewBooking}>
               <InputDiv>
                 <Select
                   value={this.state.selectedOption}
                   onChange={this.handleChange}
                   options={scheduleList}
+                  required
                 />
               </InputDiv>
               <BtnDiv>
-                <BookBtn primary onClick={this.handleClick}>
-                  Book
-                </BookBtn>
+                <Link to="/checkout">
+                  <BookBtn primary onClick={this.postNewBooking}>
+                    Book
+                  </BookBtn>
+                </Link>
               </BtnDiv>
+              <Link to="/cart">
+                <br />
+                <div primary>View card</div>
+              </Link>
               <Pdiv>
                 <P>Free to cancel (with 5 days notice)</P>
                 <P>Book at least 24 hours before each date</P>
