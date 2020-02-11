@@ -21,15 +21,27 @@ class UsersController < ApiController
   end
   
   def create
+    puts "========================================="
+    puts " WE ARE CREATING A NEW USER"
+
+
     userParams = params.require(:user)
       .permit(:email, :password, :password_confirmation)
     user = User.new userParams
+    
+    puts "PASSED: GETTING user params"
+    
     if user.save()
+      puts "SAVE SUCCESS";
       render json: user, status: :created
     else
+
+      puts "SAVE FAILED";
+
       render json: { errors: user.errors.full_messages },
              status: :unprocessable_entity
     end
+    puts "==========================================="
   end
 
   def update
@@ -67,8 +79,7 @@ class UsersController < ApiController
   end
 
   def login
-    # @current_user = AuthorizeApiRequest.call(request.headers).result
-    # # render json: { error: 'Not Authorized' }, status: 401 unless @current_user
+    
     user = User.find_by_email(params[:email])
 
     if !user
@@ -194,20 +205,6 @@ end
     end
 
      ##------Booking Logic------##----------##---------------------###
-     def user_from_params
-      # email = user_params.delete(:email)
-      # password = user_params.delete(:password)
-  
-      # Clearance.configuration.user_model.new(user_params).tap do |user|
-      #   user.email = email
-      #   user.password = password
-      # end
-    end
-
-    def user_params
-      params[Clearance.configuration.user_parameter] || Hash.new
-    end
-
 
      protected 
 
