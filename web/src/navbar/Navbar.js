@@ -1,50 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
-import { useSpring, animated, config } from "react-spring";
+import { animated } from "react-spring";
 
 import Brand from "./Brand";
-import Menu from "./Menu";
-import CollapseMenu from "./CollapseMenu";
 
-const Navbar = (props) => {
-  const barAnimation = useSpring({
-    from: { transform: "translate3d(0, -10rem, 0)" },
-    transform: "translate3d(0, 0, 0)"
-  });
-
-  const linkAnimation = useSpring({
-    from: { transform: "translate3d(0, 30px, 0)", opacity: 0 },
-    to: { transform: "translate3d(0, 0, 0)", opacity: 1 },
-    delay: 800,
-    config: config.wobbly
-  });
-
-  return (
-    <>
-      <NavBar style={barAnimation}>
-        <FlexContainer>
-          <Brand />
-          <NavLinks style={linkAnimation}>
-            <Link to="/cart">Cart</Link>
-            <Link to="/login">Login</Link>
-          </NavLinks>
-          <Wrapper>
-            <Menu
-              navbarState={props.navbarState}
-              handleNavbar={props.handleNavbar}
-            />
-          </Wrapper>
-        </FlexContainer>
-      </NavBar>
-      <CollapseMenu
-        navbarState={props.navbarState}
-        handleNavbar={props.handleNavbar}
-      />
-    </>
-  );
-};
+class Navbar extends Component {
+  handleLogoutClick(event) {
+    event.preventDefault();
+    this.props.user.logout();
+  }
+  render() {
+    const user = this.props.user;
+    return (
+      <>
+        <NavBar>
+          <FlexContainer>
+            <Link to="/">
+              <Brand />
+            </Link>
+            <NavLinks>
+              <Link to="/cart">Cart</Link>
+              {!user.isLoggedIn ? <Link to="/login">Login</Link> : null}
+              {user.isLoggedIn && user.currentUser ? (
+                <React.Fragment>
+                  <Link to="" onClick={(e) => this.handleLogoutClick(e)}>
+                    Logout
+                  </Link>
+                </React.Fragment>
+              ) : null}
+            </NavLinks>
+          </FlexContainer>
+        </NavBar>
+      </>
+    );
+  }
+}
 
 export default Navbar;
 
@@ -90,13 +82,5 @@ const NavLinks = styled(animated.ul)`
     @media (max-width: 768px) {
       display: none;
     }
-  }
-`;
-
-const Wrapper = styled.div`
-  margin: auto 0;
-
-  @media (min-width: 769px) {
-    display: none;
   }
 `;

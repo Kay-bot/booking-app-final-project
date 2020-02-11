@@ -6,7 +6,6 @@ class Login extends Component {
     this.props.user.login(email, password);
   }
   render() {
-    console.log("props are here!!", this.props.user);
     return (
       <LoginForm
         errMessage={this.props.user.loginErrorMessage}
