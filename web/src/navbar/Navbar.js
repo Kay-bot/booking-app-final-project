@@ -25,6 +25,7 @@ class Navbar extends Component {
               {!user.isLoggedIn ? <Link to="/login">Login</Link> : null}
               {user.isLoggedIn && user.currentUser ? (
                 <React.Fragment>
+                  <Link to="">You're logged in!</Link>
                   <Link to="" onClick={(e) => this.handleLogoutClick(e)}>
                     Logout
                   </Link>

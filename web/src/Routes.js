@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import PrivateRoute from "./components/PrivateRoute";
 
 import Lessons from "./pages/Lessons";
-import Admin from "./pages/Admin";
 import Login from "./pages/Login";
 import Register from "./components/Register";
 import SingleLesson from "./pages/SingleLesson";
@@ -23,13 +21,11 @@ class Routes extends Component {
     super(props);
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     this.state = {
-      navbarOpen: false,
-      user: {
-        isLoggedIn: !!auth ? true : false,
-        currentUser: null,
-        currentUserId: null,
-        loginErrorMessage: ""
-      }
+      toHomepage: false,
+      isLoggedIn: !!auth ? true : false,
+      currentUser: null,
+      currentUserId: null,
+      loginErrorMessage: ""
     };
   }
 
@@ -50,9 +46,12 @@ class Routes extends Component {
         this.setState({
           currentUser: response.data,
           currentUserId: auth.userId,
-          isLoggedIn: true
+          isLoggedIn: true,
+          toHomepage: true
         });
-        return <Redirect to="/" />;
+        if (this.state.toHomepage === true) {
+          return <Redirect to="/" />;
+        }
       });
   };
 
@@ -74,10 +73,6 @@ class Routes extends Component {
       });
   };
 
-  handleNavbar = () => {
-    this.setState({ navbarOpen: !this.state.navbarOpen });
-  };
-
   handleLogout = () => {
     sessionStorage.setItem("auth", null);
     this.setState({ currentUser: null, isLoggedIn: false });
@@ -95,14 +90,9 @@ class Routes extends Component {
 
     return (
       <BrowserRouter>
-        <Navbar
-          user={userDetails}
-          navbarState={this.state.navbarOpen}
-          handleNavbar={this.handleNavbar}
-        />
+        <Navbar user={userDetails} />
         <Switch>
           <Route exact path="/" component={Lessons} user={userDetails} />
-          <Route exact path="/lessons" component={Lessons} user={userDetails} />
           <Route
             exact
             path="/lessons/:id"
@@ -141,12 +131,6 @@ class Routes extends Component {
             user={userDetails}
           />
           {/* <Route component={Error} /> */}
-          <PrivateRoute
-            exact
-            path="/admin"
-            component={Admin}
-            user={userDetails}
-          />
         </Switch>
       </BrowserRouter>
     );
