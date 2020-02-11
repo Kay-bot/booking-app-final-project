@@ -1,7 +1,7 @@
 class LessonPayment < ApplicationRecord
-    belongs_to :account, :inverse_of => :lesson_payments
+    belongs_to :account, optional: true
     accepts_nested_attributes_for :account
   
-    belongs_to :booking, :inverse_of => :lesson_payments
+    belongs_to :booking, optional: true
     accepts_nested_attributes_for :booking
 end

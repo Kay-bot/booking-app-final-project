@@ -17,6 +17,14 @@ class ClientsController < ApiController
     end
   end
 
+  def update
+    if @client.update(client_params)
+      render json: @client
+    else
+      render json: @client.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @client = Client.find(params[:id])
     if @client.destroy

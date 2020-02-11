@@ -1,37 +1,34 @@
 class UsersController < ApiController
 
-  @@JWT_SECRET_KEY = 'to something else'
-
+  before_action :authorize_request, only: [:update_user, :delete_user]
   before_action :set_lesson, only: [:new]
-  before_action :authorize_request, except: %i[create, index, get_id, login]
 
   def index
-    @users = User.all
-    render json: @users, status: :ok
+    render json: User.all, status: :ok
   end
 
   def show
-    render json: @user
+    begin
+    user = User.find(params[:id])
+      if request.query_parameters.key?("email")
+        render json: user.email, status: :ok
+      else
+        render json: user, status: :ok
+      end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: "#{params[:id]} doesn't exist" }, status: :not_found
+  end
   end
   
   def create
     userParams = params.require(:user)
       .permit(:email, :password, :password_confirmation)
-    user = User.new(userParams)
+    user = User.new userParams
     if user.save()
       render json: user, status: :created
     else
       render json: { errors: user.errors.full_messages },
              status: :unprocessable_entity
-    end
-  end
-
-  def get_id
-    user = User.find_by(id: params[:user_id])
-    if user
-      render json: user.name, status: :ok
-    else
-      render json: { errors: "User not found" }, status: :not_found
     end
   end
 
@@ -91,29 +88,25 @@ class UsersController < ApiController
            status: :ok
 end
 
+
+@@JWT_SECRET_KEY = 'to something else'
+
 def authorize_request
-  header = request.headers['Authorization']
-    
+    header = request.headers['Authorization']
+
+    # The Authorization header is in the format of "Bearer <jwt>"
+    # we split by space to get the token
     token = header.split(' ')[1]      
     begin         
-      @user_jwt = jwt_decode(token)
-      @current_user = User.find(@user_jwt[:userId])
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { errors: e.message }, status: :unauthorized
-      rescue JWT::DecodeError => e
-        render json: { errors: e.message }, status: :unauthorized
-      end
-  end
+        @user_jwt = jwt_decode(token)
+        @current_user = User.find(@user_jwt[:user_id])
+        rescue ActiveRecord::RecordNotFound => e
+            render json: { errors: e.message }, status: :unauthorized
+        rescue JWT::DecodeError => e
+            render json: { errors: e.message }, status: :unauthorized
+    end
+end
 
-  def jwt_encode(payload, exp = 24.hours.from_now)
-      payload[:exp] = exp.to_i
-      JWT.encode(payload, @@JWT_SECRET_KEY)
-  end
-    
-  def jwt_decode(token)
-      decoded = JWT.decode(token, @@JWT_SECRET_KEY)[0]
-      HashWithIndifferentAccess.new decoded
-  end
    ##------Booking Logic------##----------##---------------------###
 
   def new
@@ -128,8 +121,9 @@ def authorize_request
 
   def create_booking
     @lesson = Lesson.find_by(id: params[:lesson_id])
-    # create_client_charge
-    #to decide how I am going to do it
+    
+    # create_client_chareg
+    
     create_client_account  
       @user = User.new()
       @user.account_id = @account.id
@@ -200,5 +194,30 @@ def authorize_request
     end
 
      ##------Booking Logic------##----------##---------------------###
+     def user_from_params
+      # email = user_params.delete(:email)
+      # password = user_params.delete(:password)
   
+      # Clearance.configuration.user_model.new(user_params).tap do |user|
+      #   user.email = email
+      #   user.password = password
+      # end
+    end
+
+    def user_params
+      params[Clearance.configuration.user_parameter] || Hash.new
+    end
+
+
+     protected 
+
+    def jwt_encode(payload, exp = 24.hours.from_now)
+        payload[:exp] = exp.to_i
+        JWT.encode(payload, @@JWT_SECRET_KEY)
+    end
+    
+    def jwt_decode(token)
+        decoded = JWT.decode(token, @@JWT_SECRET_KEY)[0]
+        HashWithIndifferentAccess.new decoded
+    end
 end

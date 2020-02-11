@@ -8,6 +8,7 @@
 Account.destroy_all 
 User.destroy_all 
 Trainer.destroy_all
+Client.destroy_all
 Lesson.destroy_all
 Schedule.destroy_all
 
@@ -23,21 +24,24 @@ kay = User.create(
     email:'kay@ga.com.au', 
     password:'123456', 
     is_admin: true,
-    account_id: 1
     );
 
 otis = User.create(
     email:'otis@ga.com.au', 
     password:'123456', 
     is_admin: false,
-    account_id: 1
     );
 
 maeve = User.create(
     email:'maeve@ga.com.au', 
     password:'123456', 
     is_admin: false,
-    account_id: 1
+    );
+
+user1 = User.create(
+    email:'user1@ga.com.au', 
+    password:'123456', 
+    is_admin: false,
     );
 
 otis = Trainer.create(
@@ -61,6 +65,16 @@ maeve = Trainer.create(
     user_id: 3,
     account_id: 1
 )
+
+user1 = Client.create(
+    photo: "https://imgur.com/EVLZoEe",
+    first_name: "User1",
+    last_name: "Client",
+    phone: "0455-895-178",
+    user_id: 4,
+    account_id: 2
+    );
+
 Lesson.create(
     url: 'https://classbento.com.au/images/class/basket-weaving-class-at-bondi-beach-portrait-big.jpg?1580588732%201600w', 
     title: 'Basket Weaving Class',
@@ -241,5 +255,6 @@ Schedule.create(
 puts "seeding Accounts database created #{Account.all.length}"
 puts "seeding Users database created #{User.all.length}"
 puts "seeding Trainers database created #{Trainer.all.length}"
+puts "seeding Clients database created #{Client.all.length}"
 puts "seeding Lessons database created #{Lesson.all.length}"
 puts "seeding Schedules database created #{Schedule.all.length}"

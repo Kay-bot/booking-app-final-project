@@ -1,5 +1,17 @@
 # README
 
+Todo:
+create end point to get booking/:lesson_id
+
+Current blockages:
+
+1. Backend falling back html issue deters other functions to working properly
+
+Currently working on:
+Booking Form,
+Cart.js, and
+Checkout.js
+
 Booking app
 
 To do outline the project requirements in the perspective of how the user interacts

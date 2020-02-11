@@ -10,6 +10,7 @@ class SchedulesController < ApiController
 
   # GET /schedules/1
   def show
+    @schedule = Schedule.find(params[:id])
     render json: @schedule
   end
 
