@@ -6,11 +6,11 @@ import Navbar from "./navbar/Navbar";
 import Lessons from "./pages/Lessons";
 import Login from "./pages/Login";
 import SingleLesson from "./pages/SingleLesson";
-import Checkout from "./pages/Checkout";
+import Checkout from "./bookings/Checkout";
 
 import Register from "./components/Register";
 import Schedules from "./components/Schedules";
-import Cart from "./components/Cart";
+import Cart from "./bookings/Cart";
 import Error from "./components/Error";
 
 import LessonForm from "./forms/LessonForm";

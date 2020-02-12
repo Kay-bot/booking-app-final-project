@@ -13,7 +13,7 @@ import {
 class Checkout extends Component {
   constructor(props) {
     super(props);
-    this.state = { lessons: [] };
+    this.state = { lessons: [], qty: 1 };
   }
 
   componentDidMount() {
@@ -22,7 +22,7 @@ class Checkout extends Component {
     // axios.get(`/booking/:lesson_id`).then((booking) => {
     //   let total = 0;
     //   for (var i = 0; i < booking.length; i++) {
-    //     total += booking[i].cost * 1;
+    //     total += booking[i].cost * qty;
     //   }
     //   this.setState({ booking, total });
     // });

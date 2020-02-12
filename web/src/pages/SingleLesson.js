@@ -7,7 +7,7 @@ import {
   SLDetailsContainer
 } from "../styles/SingLessonStyled";
 
-import BookingForm from "../forms/BookingForm";
+import BookingForm from "../bookings/BookingForm";
 
 class SingleLesson extends Component {
   state = {
