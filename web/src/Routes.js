@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import axios from "axios";
-
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
+import Navbar from "./navbar/Navbar";
 
 import Lessons from "./pages/Lessons";
 import Login from "./pages/Login";
-import Register from "./components/Register";
 import SingleLesson from "./pages/SingleLesson";
 import Checkout from "./pages/Checkout";
-import Cart from "./components/Cart";
-// import Error from "./pages/Error";
 
-import Navbar from "./navbar/Navbar";
-
+import Register from "./components/Register";
 import Schedules from "./components/Schedules";
+import Cart from "./components/Cart";
+import Error from "./components/Error";
+
 import LessonForm from "./forms/LessonForm";
+
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminHome from "./admin/AdminHome";
+import AdminSignIn from "./admin/AdminSignIn";
+import PrivateRoute from "./admin/PrivateRoute";
+import PublicRoute from "./admin/PublicRoute";
 
 class Routes extends Component {
   constructor(props) {
@@ -130,7 +135,25 @@ class Routes extends Component {
             component={Register}
             user={userDetails}
           />
-          {/* <Route component={Error} /> */}
+          <PublicRoute
+            restricted={false}
+            component={AdminHome}
+            path="/admin-home"
+            exact
+          />
+          <PublicRoute
+            restricted={true}
+            component={AdminSignIn}
+            path="/admin-signin"
+            exact
+          />
+          <PrivateRoute
+            restricted={true}
+            component={AdminDashboard}
+            path="/admin-dashboard"
+            exact
+          />
+          <Route component={Error} />
         </Switch>
       </BrowserRouter>
     );
