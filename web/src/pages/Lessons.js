@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import StyledHero from "../styles/StyledHero";
+import styled from "styled-components";
 import {
   LessonContainer,
   LessonCardContainer,
@@ -74,7 +75,9 @@ class Lessons extends Component {
     ));
     const box = {
       position: "reletive",
-      padding: "80px"
+      paddingRight: "40px",
+      paddingBottom: "50px",
+      paddingLeft: "40px"
     };
     const box2 = {
       margin: "0",
@@ -87,7 +90,7 @@ class Lessons extends Component {
     return (
       <div style={box}>
         <StyledHero>
-          <h1>Fun workshops and classes Sydney</h1>
+          <Title>Fun workshops and classes Sydney</Title>
         </StyledHero>
 
         <LessonContainer>{lessonList}</LessonContainer>
@@ -122,3 +125,9 @@ class Lessons extends Component {
 }
 
 export default Lessons;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;

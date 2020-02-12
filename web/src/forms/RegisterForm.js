@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../styles/form.css";
 import { Link } from "react-router-dom";
-import moewLogo from "../assets/meowLogo.jpg";
+import logo2 from "../assets/logo2.png";
 import { Card, Logo, Form, Input, Button } from "../forms/AuthForm";
 
 class RegisterForm extends Component {
@@ -33,7 +33,7 @@ class RegisterForm extends Component {
   render() {
     return (
       <Card>
-        <Logo src={moewLogo} />
+        <Logo src={logo2} />
         <Form>
           <Input
             type="text"

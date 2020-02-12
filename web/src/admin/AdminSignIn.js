@@ -3,7 +3,6 @@ import { login } from "./authAdmin";
 import styled from "styled-components";
 import { Container } from "../styles/Container";
 import { Card, Form, Input, Button } from "../forms/AuthForm";
-import Sidebar from "./Sidebar";
 
 const SignIn = (props) => {
   const handleLogin = () => {

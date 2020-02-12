@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import moewLogo from "../assets/meowLogo.jpg";
+import logo2 from "../assets/logo2.png";
 
 import { Card, Logo, Form, Input, Button, Error } from "../forms/AuthForm";
 import { Container } from "../styles/Container";
@@ -30,7 +30,7 @@ class LoginForm extends Component {
     return (
       <Container>
         <Card>
-          <Logo src={moewLogo} />
+          <Logo src={logo2} />
           <Error>{this.props.errMessage}</Error>
           <Form>
             <Input

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import RegisterForm from "../forms/RegisterForm";
 import axios from "axios";
+import styled from "styled-components";
 import { Redirect } from "react-router-dom";
 import { Error } from "../forms/AuthForm";
 import { Container } from "../styles/Container";
@@ -34,16 +35,22 @@ const Register = () => {
   }
 
   return (
-    <Container>
-      <RegisterForm onSignup={(data) => handleSignup(data)}></RegisterForm>
-
-      {isError && (
-        <Error>
-          "Error register failed. Please check network or contact admin"
-        </Error>
-      )}
-    </Container>
+    <Wrapper>
+      <Container>
+        {isError && (
+          <Error>
+            "Error register failed. Please check network or contact admin"
+          </Error>
+        )}
+      </Container>
+      <Container>
+        <RegisterForm onSignup={(data) => handleSignup(data)}></RegisterForm>
+      </Container>
+    </Wrapper>
   );
 };
 
 export default Register;
+const Wrapper = styled.section`
+  padding: 4em;
+`;

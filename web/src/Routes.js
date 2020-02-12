@@ -112,18 +112,7 @@ class Routes extends Component {
             user={userDetails}
           />
           <Route exact path="/Cart" component={Cart} user={userDetails} />
-          <Route
-            exact
-            path="/schedules"
-            component={Schedules}
-            user={userDetails}
-          />
-          <Route
-            exact
-            path="/add-lessons"
-            component={LessonForm}
-            user={userDetails}
-          />
+
           <Route
             exact
             path="/login"
@@ -135,8 +124,8 @@ class Routes extends Component {
             component={Register}
             user={userDetails}
           />
-          <PublicRoute
-            restricted={false}
+          <PrivateRoute
+            restricted={true}
             component={AdminHome}
             path="/admin-home"
             exact
@@ -153,6 +142,8 @@ class Routes extends Component {
             path="/admin-dashboard"
             exact
           />
+          <Route exact path="/add-lessons" component={LessonForm} />
+          <Route exact path="/schedules" component={Schedules} />
           <Route component={Error} />
         </Switch>
       </BrowserRouter>

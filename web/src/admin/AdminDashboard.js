@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
 
@@ -11,24 +10,12 @@ const AdminDashboard = (props) => {
         <ColumnLeft>
           <Sidebar />
         </ColumnLeft>
-
         <Column>
           <InnerRow>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna
-            condimentum mattis pellentesque id. Tristique magna sit amet purus
-            gravida quis blandit turpis cursus.
+            <Image src="https://content.presspage.com/uploads/685/1920_bookerinsights-2.png?10000" />
           </InnerRow>
           <InnerRow>
-            Rhoncus mattis rhoncus urna neque. Dignissim enim sit amet
-            venenatis. Vel risus commodo viverra maecenas. Placerat vestibulum
-            lectus mauris ultrices. In metus vulputate eu scelerisque.
-          </InnerRow>
-          <InnerRow>
-            In ante metus dictum at tempor commodo ullamcorper. Eu volutpat odio
-            facilisis mauris sit amet massa vitae. Arcu risus quis varius quam
-            quisque. Lacinia quis vel eros donec ac odio tempor orci dapibus.
-            Vulputate mi sit amet mauris.
+            <a href="#">Export excel</a>
           </InnerRow>
         </Column>
       </Row>
@@ -82,4 +69,9 @@ const InnerRow = styled.div`
   content: "";
   display: table;
   clear: both;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  object-fit: cover;
 `;
