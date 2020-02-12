@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :lessons
 
  #schedules
+  get 'schedules', to: 'schedules#get'
   get ' /schedules/:id', to: 'schedules#show'
   post '/schedules', to: 'schedules#create'
 

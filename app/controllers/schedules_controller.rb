@@ -2,10 +2,8 @@ class SchedulesController < ApiController
   before_action :set_schedule, only: [:show, :update, :destroy]
 
   # GET /schedules
-  def index
-    @schedules = Schedule.all
-
-    render json: @schedules
+  def get
+    render json: Schedule.all.as_json, status: 200
   end
 
   # GET /schedules/1
