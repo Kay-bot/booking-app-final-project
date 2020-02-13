@@ -7,10 +7,10 @@ import Lessons from "./pages/Lessons";
 import Login from "./pages/Login";
 import SingleLesson from "./pages/SingleLesson";
 import Checkout from "./bookings/Checkout";
+import Cart from "./bookings/Cart";
 
 import Register from "./components/Register";
 import Schedules from "./components/Schedules";
-import Cart from "./bookings/Cart";
 import Error from "./components/Error";
 
 import LessonForm from "./forms/LessonForm";
@@ -111,8 +111,7 @@ class Routes extends Component {
             component={Checkout}
             user={userDetails}
           />
-          <Route exact path="/Cart" component={Cart} user={userDetails} />
-
+          <Route exact path="/cart" component={Cart} user={userDetails} />
           <Route
             exact
             path="/login"

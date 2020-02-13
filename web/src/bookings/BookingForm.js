@@ -10,7 +10,7 @@ import {
 } from "../styles/SingLessonStyled";
 import styled from "styled-components";
 import axios from "axios";
-
+import { useRadioGroup } from "@material-ui/core";
 class BookingForm extends Component {
   state = {
     schedules: [],
@@ -33,19 +33,43 @@ class BookingForm extends Component {
     );
   };
 
-  postNewBooking = (schedule) => {
-    //this function is not working yet
+  postNewBooking = (event) => {
+    event.preventDefault();
+    let auth = JSON.parse(sessionStorage.getItem("auth"));
+    const schedule = this.state.selectedOption;
+    const booking = {
+      status: "Booked",
+      title: "Another test",
+      cost: 50,
+      date: "",
+      cancellation_reason: null,
+      refunded: null,
+      client_id: "1",
+      trainer_id: 2,
+      schedule_id: 5,
+      lesson_id: 6,
+      account_id: 2
+    };
     axios
-      .post(`/booking/:lesson_id`, {
-        schedule: schedule
-      })
+      .post(
+        `/bookings`,
+        {
+          ...booking
+        },
+        {
+          headers: { Authorization: `Bearer ${auth.token}` }
+        }
+      )
       .then((response) => {
+        console.log("Got Booking create response");
         localStorage.setItem("booking", JSON.stringify(response.data));
+        // useHistory().push("/checkout");
       })
       .catch((error) => {
+        console.log("Got Booking create error!");
+
         console.log(error);
       });
-    return <Redirect to="/checkout" />;
   };
 
   render() {
@@ -69,11 +93,9 @@ class BookingForm extends Component {
                 />
               </InputDiv>
               <BtnDiv>
-                <Link to="/checkout">
-                  <BookBtn primary onClick={this.postNewBooking}>
-                    Book
-                  </BookBtn>
-                </Link>
+                <BookBtn primary onClick={this.postNewBooking}>
+                  Book
+                </BookBtn>
               </BtnDiv>
               <Link to="/cart">
                 <br />

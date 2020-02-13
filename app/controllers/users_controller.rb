@@ -21,27 +21,21 @@ class UsersController < ApiController
   end
   
   def create
-    puts "========================================="
-    puts " WE ARE CREATING A NEW USER"
-
-
     userParams = params.require(:user)
       .permit(:email, :password, :password_confirmation)
-    user = User.new userParams
-    
-    puts "PASSED: GETTING user params"
+    user = User.new(userParams)
     
     if user.save()
-      puts "SAVE SUCCESS";
+   
       render json: user, status: :created
     else
 
-      puts "SAVE FAILED";
+
 
       render json: { errors: user.errors.full_messages },
              status: :unprocessable_entity
     end
-    puts "==========================================="
+   
   end
 
   def update
@@ -158,8 +152,8 @@ end
     end
 
     def create_client_account
-      @account = Account.new()
-      @account.account_type = 'client'
+      @account = Account.create(account_type: "Client");
+      puts "ACCOUNT IS: " + @account.to_json
       @account.save
     end
 
