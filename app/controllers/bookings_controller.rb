@@ -10,7 +10,17 @@ class BookingsController < ApiController
 
   # GET /bookings/1
   def show
-    render json: @booking
+    begin
+    booking = Booking.find(params[:id])
+      if request.query_parameters.key?("id")
+        render json:{booking: booking.title, booking_id: booking.id}, status: :ok
+        
+      else
+        render json: booking, status: :ok
+      end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: "#{params[:id]} doesn't exist" }, status: :not_found
+  end
   end
 
   # POST /bookings

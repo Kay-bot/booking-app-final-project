@@ -11,9 +11,9 @@ class ClientsController < ApiController
     @client = Client.new(client_params)
 
     if @client.save
-      render json: @client, status: :created
+      render json: {client: @client}, status: :created
     else
-      render json: @client.errors, status: :unprocessable_entity
+      render json: {client: @client.errors}, status: :unprocessable_entity
     end
   end
 

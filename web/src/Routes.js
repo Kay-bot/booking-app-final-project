@@ -6,8 +6,10 @@ import Navbar from "./navbar/Navbar";
 import Lessons from "./pages/Lessons";
 import Login from "./pages/Login";
 import SingleLesson from "./pages/SingleLesson";
+
 import Checkout from "./bookings/Checkout";
 import Cart from "./bookings/Cart";
+import BookingList from "./bookings/BookingList";
 
 import Register from "./components/Register";
 import Schedules from "./components/Schedules";
@@ -104,14 +106,19 @@ class Routes extends Component {
             component={SingleLesson}
             user={userDetails}
           />
-
+          <Route
+            exact
+            path="/booking-list"
+            component={BookingList}
+            user={userDetails}
+          />
+          <Route exact path="/cart" component={Cart} user={userDetails} />
           <Route
             exact
             path="/checkout"
             component={Checkout}
             user={userDetails}
           />
-          <Route exact path="/cart" component={Cart} user={userDetails} />
           <Route
             exact
             path="/login"

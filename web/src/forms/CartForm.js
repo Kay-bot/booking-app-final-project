@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Wrapper = styled.section`
   padding: 4em;
 
-  background: papayawhip;
   height: 100%;
   overflow-y: hidden;
   @media (max-width: 767px) {
@@ -28,6 +27,8 @@ const SectionWrapper = styled.div`
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
   *,
   :after,
   :before {

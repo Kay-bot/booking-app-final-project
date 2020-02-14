@@ -1,64 +1,67 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import CartItem from "./CartItem";
 import axios from "axios";
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { bookings: [], total: 1 };
-  }
+  state = {
+    bookings: [],
+    total: 1
+  };
+
   componentDidMount() {
-    let booking = localStorage.getItem("booking");
-    if (!booking) return;
-    axios.get("/bookings/:id").then((item) => {
-      let total = 0;
-      for (var i = 0; i < item.length; i++) {
-        total += item[i].cost * item[i].qty;
-      }
-      this.setState({ booking, total });
-    });
+    let auth = JSON.parse(sessionStorage.getItem("auth"));
+    let cart = localStorage.getItem("cart");
+    console.log(cart);
+    if (!cart) return;
+    axios
+      .get(`/bookings/45`, {
+        headers: { Authorization: `Bearer ${auth.token}` }
+      })
+      .then((result) => {
+        this.setState({ bookings: result.data, total: 1 });
+      });
   }
+
   removeFromCart = (booking) => {
-    let itemInCart = this.state.bookings.filter(
-      (item) => item.id !== booking.id
-    );
-    let removeBooking = JSON.parse(localStorage.getItem("booking"));
-    delete removeBooking[booking.id.toString()];
-    localStorage.setItem("booking", JSON.stringify(booking));
+    let bookings = this.state.bookings.filter((item) => item.id !== booking.id);
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    delete cart[booking.id.toString()];
+    localStorage.setItem("cart", JSON.stringify(cart));
     let total = this.state.total - booking.qty * booking.cost;
-    this.setState({ booking, total });
+    this.setState({ bookings, total });
   };
   clearCart = () => {
-    localStorage.removeItem("itemInCart");
+    localStorage.removeItem("cart");
     this.setState({ booking: [] });
   };
+
   render() {
-    const { booking, total } = this.state;
     return (
       <div>
         <h3>Cart</h3>
-        {booking.map((item, index) => (
-          <CartItem item={booking} remove={this.removeFromCart} key={index} />
-        ))}
-        {booking.length ? (
+        {this.state.bookings ? (
           <div>
-            <h4>
-              <small>Total Amount: </small>
-              <span>${total}</span>
-            </h4>
-            <hr />
+            <div>Booking status: {this.state.bookings.status}</div>
+            <div>Lesson: {this.state.bookings.title}</div>
+            <div>Cost: $ {this.state.bookings.cost}</div>
+            <div>Date: {this.state.bookings.date}</div>
           </div>
         ) : (
-          ""
+          <p>No booking details</p>
         )}
-        {!booking.length ? <h3>No item on the cart</h3> : ""}
         <Link to="/checkout">
-          <button>Checkout</button>
+          <button className="btn btn-success float-right">Checkout</button>
         </Link>
-        <button onClick={this.clearCart} style={{ marginRight: "10px" }}>
+        <button
+          className="btn btn-danger float-right"
+          onClick={this.clearCart}
+          style={{ marginRight: "10px" }}
+        >
           Clear Cart
         </button>
+        <br />
+        <br />
+        <br />
         <br />
         <br />
         <br />

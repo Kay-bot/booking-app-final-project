@@ -34,6 +34,7 @@ class BookingForm extends Component {
   };
 
   postNewBooking = (event) => {
+    alert("A booking was submitted");
     event.preventDefault();
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     const schedule = this.state.selectedOption;
@@ -62,7 +63,7 @@ class BookingForm extends Component {
       )
       .then((response) => {
         console.log("Got Booking create response");
-        localStorage.setItem("booking", JSON.stringify(response.data));
+        localStorage.setItem("cart", JSON.stringify(response.data));
         // useHistory().push("/checkout");
       })
       .catch((error) => {
