@@ -40,15 +40,15 @@ class BookingForm extends Component {
     const schedule = this.state.selectedOption;
     const booking = {
       status: "Booked",
-      title: "Test number 3 - Booking function works",
-      cost: 50,
+      title: "Shake Cocktails with Australian Native Plants",
+      cost: 85,
       date: "Fri, 20 Feb",
       cancellation_reason: null,
       refunded: null,
       client_id: "1",
       trainer_id: 2,
       schedule_id: 5,
-      lesson_id: 6,
+      lesson_id: 3,
       account_id: 2
     };
     axios

@@ -251,6 +251,19 @@ Schedule.create(
     account_id:1,
     lesson_id:1
 );  
+Booking.create(
+    status: "Booked",
+    title: "Shake Cocktails with Australian Native Plants",
+    cost: 85,
+    date: "Fri, 20 Feb",
+    cancellation_reason: "",
+    refunded: "",
+    client_id: "1",
+    trainer_id: 2,
+    schedule_id: 5,
+    lesson_id: 3,
+    account_id: 2
+)
 
 puts "seeding Accounts database created #{Account.all.length}"
 puts "seeding Users database created #{User.all.length}"

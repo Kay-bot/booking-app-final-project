@@ -35,7 +35,7 @@ class Checkout extends Component {
     console.log(cart);
     if (!cart) return;
     axios
-      .get(`/bookings/45`, {
+      .get(`/bookings/50`, {
         headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((result) => {
