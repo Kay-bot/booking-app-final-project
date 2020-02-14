@@ -24,6 +24,7 @@ class ScheduleForm extends Component {
     });
 
   submitForm = async (e) => {
+    alert("A schedule was submitted");
     e.preventDefault(e);
     console.log(this.state);
     this.setState({ isSubmitting: true });
