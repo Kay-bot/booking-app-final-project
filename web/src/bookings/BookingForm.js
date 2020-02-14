@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   BookingWrapper,
   InnerContainer,
@@ -10,7 +10,7 @@ import {
 } from "../styles/SingLessonStyled";
 import styled from "styled-components";
 import axios from "axios";
-import { useRadioGroup } from "@material-ui/core";
+
 class BookingForm extends Component {
   state = {
     schedules: [],
@@ -39,9 +39,9 @@ class BookingForm extends Component {
     const schedule = this.state.selectedOption;
     const booking = {
       status: "Booked",
-      title: "Another test",
+      title: "Test number 3 - Booking function works",
       cost: 50,
-      date: "",
+      date: "Fri, 20 Feb",
       cancellation_reason: null,
       refunded: null,
       client_id: "1",

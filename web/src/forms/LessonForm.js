@@ -24,7 +24,7 @@ class LessonForm extends Component {
   }
 
   submitForm = async (e) => {
-    alert("A class was submitted: " + this.state.values);
+    alert("A class was submitted: " + this.state);
     e.preventDefault();
     console.log(this.state);
     this.setState({ isSubmitting: true });
