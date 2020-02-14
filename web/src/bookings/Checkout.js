@@ -21,7 +21,7 @@ class Checkout extends Component {
         first_name: "",
         last_name: "",
         phone: "",
-        user_id: auth.userId,
+        user_id: 4,
         account_id: 2
       },
       isSubmitting: false,
@@ -35,7 +35,7 @@ class Checkout extends Component {
     console.log(cart);
     if (!cart) return;
     axios
-      .get(`/bookings/50`, {
+      .get(`/bookings/1`, {
         headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((result) => {

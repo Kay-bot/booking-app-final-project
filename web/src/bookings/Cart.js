@@ -14,7 +14,7 @@ class Cart extends Component {
     console.log(cart);
     if (!cart) return;
     axios
-      .get(`/bookings/50`, {
+      .get(`/bookings/1`, {
         headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((result) => {
