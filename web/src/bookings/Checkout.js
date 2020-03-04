@@ -32,10 +32,13 @@ class Checkout extends Component {
   componentDidMount() {
     let auth = JSON.parse(sessionStorage.getItem("auth"));
     let cart = localStorage.getItem("cart");
+    cart = JSON.parse(cart || "{}");
     console.log(cart);
     if (!cart) return;
+    let bookingId = cart.id;
+
     axios
-      .get(`/bookings/1`, {
+      .get(`/bookings/${bookingId}`, {
         headers: { Authorization: `Bearer ${auth.token}` }
       })
       .then((result) => {

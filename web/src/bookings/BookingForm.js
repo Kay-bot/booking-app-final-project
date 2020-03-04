@@ -40,17 +40,22 @@ class BookingForm extends Component {
     const schedule = this.state.selectedOption;
     const booking = {
       status: "Booked",
-      title: "Shake Cocktails with Australian Native Plants",
-      cost: 85,
-      date: "Fri, 20 Feb",
+      title: this.props.lesson.title,
+      cost: this.props.lesson.cost,
+      date: schedule.date,
       cancellation_reason: null,
       refunded: null,
-      client_id: "1",
+      client_id: 1,
       trainer_id: 2,
-      schedule_id: 5,
-      lesson_id: 3,
+      schedule_id: schedule.id,
+      lesson_id: this.props.lesson.id,
       account_id: 2
     };
+    console.log("Clicked Book");
+    console.log(schedule);
+    console.log(this.props.lesson);
+    console.log(auth.token);
+    debugger;
     axios
       .post(
         `/bookings`,
@@ -75,7 +80,7 @@ class BookingForm extends Component {
 
   render() {
     const scheduleList = this.state.schedules.map((item) => ({
-      value: item.date + item.time,
+      value: item,
       label: item.date + item.time
     }));
 

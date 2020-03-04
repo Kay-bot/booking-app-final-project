@@ -48,7 +48,7 @@ class SingleLesson extends Component {
             <p>No lesson details</p>
           )}
         </SingleLessonContainer>
-        <BookingForm />
+        <BookingForm user={this.props.user} lesson={this.state.lesson} />
       </SingleLessonWrapper>
     );
   }
