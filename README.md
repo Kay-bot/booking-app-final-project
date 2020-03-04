@@ -1,39 +1,7 @@
 # README
 
-Todo:
-create end point to get booking/:lesson_id
-
-Current blockages:
-
-1. Backend falling back html issue deters other functions to working properly
-
-Currently working on:
-Booking Form,
-Cart.js, and
-Checkout.js
-
-Booking app
-
-To do outline the project requirements in the perspective of how the user interacts
-
-The app will have the following features:
-
-Must have
-As a user I can xxxxx
-As a user I can xxxxx
-
-Should have
-
-Could have
-
----
-
-Deploy: https://booking-app-final-project.herokuapp.com/
-
-Stacks
-Fronend: built on React
-Backend: built on rails
-Database: Postgres
+I am no longer updating this repo.
+The updated work will be continue in this repo: https://github.com/Kay-bot/book-your-class-app the app is deployed on Heroku:https://book-your-class-app.herokuapp.com/
 
 References:
 Backend project structure, read:
